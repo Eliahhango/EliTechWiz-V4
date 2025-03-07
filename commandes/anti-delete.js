@@ -4,70 +4,101 @@ const fs = require('fs');
 
 let antiDeleteActive = false; // Variable pour stocker l'état de la commande anti-delete
 
+/ Map to store messages for anti-delete feature
+const messageStore = new Map();
+let antiDeleteEnabled = new Map(); // Changed to Map to store per-chat settings
+
 zokou({
-  nomCom: "anti-delete",
-  categorie: "General",
-  reaction: "🥺"
-}, async (origineMessage, zk, commandeOptions) => {
-  const { ms, arg } = commandeOptions;
+  nomCom: "antidelete",
+  categorie: "Group",
+  reaction: "🔄"
+}, async (dest, zk, commandeOptions) => {
+  const { repondre, arg, msgId } = commandeOptions;
 
-  // Vérifier si un argument est fourni pour activer ou désactiver la commande
-  if (arg[0]) {
-    const action = arg[0].toLowerCase();
-    if (action === "on") {
-      antiDeleteActive = true;
-      await zk.sendMessage(origineMessage, "La commande anti-delete est activée.");
-      return;
-    } else if (action === "off") {
-      antiDeleteActive = false;
-      await zk.sendMessage(origineMessage, "La commande anti-delete est désactivée.");
-      return;
-    }
-  }
-
-  // Vérifier si la commande anti-delete est activée
-  if (!antiDeleteActive) {
-    await zk.sendMessage(origineMessage, "La commande anti-delete est actuellement désactivée.");
+  if (!arg[0]) {
+    repondre("Please specify 'on' or 'off' to enable/disable anti-delete feature.");
     return;
   }
 
-  if (ms.message.protocolMessage && ms.message.protocolMessage.type === 0 && (conf.ADM).toLowerCase() === 'yes') {
-    if (ms.key.fromMe || ms.message.protocolMessage.key.fromMe) {
-      console.log('Message supprimé me concernant');
-      return;
+  const action = arg[0].toLowerCase();
+  const chatId = dest; // This works for both group and private chats
+
+  if (action === 'on') {
+    antiDeleteEnabled.set(chatId, true);
+    repondre("✅ Anti-delete feature has been enabled in this chat. Deleted messages will be reposted.");
+  } else if (action === 'off') {
+    antiDeleteEnabled.delete(chatId);
+    // Clear stored messages for this chat
+    for (const [key, value] of messageStore.entries()) {
+      if (value.from === chatId) {
+        messageStore.delete(key);
+      }
     }
+    repondre("❌ Anti-delete feature has been disabled in this chat.");
+  } else {
+    repondre("Invalid option. Please use 'on' or 'off'.");
+  }
+});
 
-    console.log('Message supprimé');
-    const key = ms.message.protocolMessage.key;
+// Message handler for storing messages
+zk.ev.on('messages.upsert', async ({ messages }) => {
+  for (const message of messages) {
+    const chatId = message.key.remoteJid;
+    
+    // Only store if anti-delete is enabled for this chat
+    if (antiDeleteEnabled.has(chatId) && message.message) {
+      // Store message with key as the message ID
+      messageStore.set(message.key.id, {
+        message: message.message,
+        from: chatId,
+        participant: message.key.participant || message.key.remoteJid,
+        type: chatId.endsWith('@g.us') ? 'group' : 'private'
+      });
+      
+      // Remove message after 1 hour to prevent memory overload
+      setTimeout(() => {
+        messageStore.delete(message.key.id);
+      }, 60 * 60 * 1000);
+    }
+  }
+});
 
-    try {
-      const st = './store.json';
-      const data = fs.readFileSync(st, 'utf8');
-      const jsonData = JSON.parse(data);
-      const message = jsonData.messages[key.remoteJid];
+// Message delete handler
+zk.ev.on('messages.delete', async (message) => {
+  // Check if it's a single message delete or multiple
+  const messageIds = Array.isArray(message.keys) ? message.keys : [message];
 
-      let msg;
+  for (const msgKey of messageIds) {
+    const deletedMessage = messageStore.get(msgKey.id);
+    
+    if (deletedMessage && antiDeleteEnabled.has(deletedMessage.from)) {
+      const isGroup = deletedMessage.type === 'group';
+      const sender = deletedMessage.participant;
+      
+      let caption = `⚠️ *Anti-Delete Detection*\n\n`;
+      
+      if (isGroup) {
+        caption += `• From: @${sender.split('@')[0]}\n`;
+        caption += `• Chat: Group\n`;
+      } else {
+        caption += `• Chat: Private\n`;
+      }
+      caption += `• Action: Message Deleted\n\n`;
+      caption += `*Original Message:*`;
 
-      for (let i = 0; i < message.length; i++) {
-        if (message[i].key.id === key.id) {
-          msg = message[i];
-          break;
-        }
+      try {
+        // Resend the deleted message
+        await zk.sendMessage(deletedMessage.from, {
+          forward: deletedMessage.message,
+          caption: caption,
+          mentions: isGroup ? [sender] : []
+        });
+      } catch (error) {
+        console.error('Error resending deleted message:', error);
       }
 
-      if (!msg) {
-        console.log('Message introuvable');
-        return;
-      }
-
-      const senderId = msg.key.participant.split('@')[0];
-      const caption = ` Anti-delete-message by BONIPHACE-MD\nMessage de @${senderId}`;
-      const imageCaption = { image: { url: './media/deleted-message.jpg' }, caption, mentions: [msg.key.participant] };
-
-      await zk.sendMessage(idBot, imageCaption);
-      await zk.sendMessage(idBot, { forward: msg }, { quoted: msg });
-    } catch (error) {
-      console.error(error);
+      // Remove from storage
+      messageStore.delete(msgKey.id);
     }
   }
 });
