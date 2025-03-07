@@ -4,80 +4,72 @@ const fs = require('fs');
 let antiStickerDeleteActive = false; // Variable to store the state of the anti-sticker-delete command
 
 zokou({
-  nomCom: "anti-sticker-delete",
+  nomCom: "antisticker",
   categorie: "General",
-  reaction: "🥺"
-}, async (origineMessage, zk, commandeOptions) => {
-  const { ms, arg } = commandeOptions;
+  reaction: "🚫"
+}, async (dest, zk, commandeOptions) => {
+  const { repondre, arg, ms, groupMeta } = commandeOptions;
 
-  // Check if an argument is provided to activate or deactivate the command
-  if (arg[0]) {
-    const action = arg[0].toLowerCase();
-    if (action === "on") {
-      antiStickerDeleteActive = true;
-      await zk.sendMessage(origineMessage, "La commande anti-sticker-delete est activée.");
-      return;
-    } else if (action === "off") {
-      antiStickerDeleteActive = false;
-      await zk.sendMessage(origineMessage, "La commande anti-sticker-delete est désactivée.");
-      return;
-    }
-  }
-
-  // Check if the command is activated
-  if (!antiStickerDeleteActive) {
-    await zk.sendMessage(origineMessage, "La commande anti-sticker-delete est actuellement désactivée.");
+  // Check if the command is used in a group
+  if (!dest.endsWith('@g.us')) {
+    repondre("❌ This command can only be used in groups.");
     return;
   }
 
-  // Check if the message is a protocol message indicating deletion
-  if (ms.message.protocolMessage && ms.message.protocolMessage.type === 0) {
-    // Check if the user is an admin
-    const isAdmin = await zk.isAdmin(origineMessage.from, origineMessage.sender);
-    if (!isAdmin) {
-      await zk.sendMessage(origineMessage, "Vous devez être un administrateur pour utiliser cette commande.");
-      return;
-    }
+  // Check if user is admin
+  const groupAdmins = await zk.groupAdmin(dest);
+  const sender = ms.key.participant || ms.key.remoteJid;
+  
+  if (!groupAdmins.includes(sender)) {
+    repondre("❌ This command can only be used by group admins.");
+    return;
+  }
 
-    // Check if the deleted message is a sticker
-    if (ms.message.protocolMessage.key.fromMe || ms.key.fromMe) {
-      console.log('Message supprimé me concernant');
-      return;
-    }
+  if (!arg[0]) {
+    repondre("Please specify 'on' or 'off' to enable/disable anti-sticker feature.");
+    return;
+  }
 
-    const key = ms.message.protocolMessage.key;
+  const action = arg[0].toLowerCase();
+  const chatId = dest;
 
-    try {
-      const st = './store.json';
-      const data = fs.readFileSync(st, 'utf8');
-      const jsonData = JSON.parse(data);
-      const message = jsonData.messages[key.remoteJid];
+  if (action === 'on') {
+    antiStickerEnabled.set(chatId, true);
+    repondre("✅ Anti-sticker feature has been enabled. All stickers will be automatically removed.");
+  } else if (action === 'off') {
+    antiStickerEnabled.delete(chatId);
+    repondre("❌ Anti-sticker feature has been disabled. Stickers are now allowed.");
+  } else {
+    repondre("Invalid option. Please use 'on' or 'off'.");
+  }
+});
 
-      let msg;
-
-      for (let i = 0; i < message.length; i++) {
-        if (message[i].key.id === key.id) {
-          msg = message[i];
-          break;
+// Message handler for detecting stickers
+zk.ev.on('messages.upsert', async ({ messages }) => {
+  for (const message of messages) {
+    const chatId = message.key.remoteJid;
+    
+    // Check if this is a group and anti-sticker is enabled
+    if (chatId?.endsWith('@g.us') && antiStickerEnabled.has(chatId)) {
+      // Check if the message contains a sticker
+      if (message.message?.stickerMessage) {
+        try {
+          // Delete the sticker message
+          await zk.sendMessage(chatId, { delete: message.key });
+          
+          // Get sender's name/number
+          const sender = message.key.participant || message.key.remoteJid;
+          const senderName = '@' + sender.split('@')[0];
+          
+          // Send warning message
+          await zk.sendMessage(chatId, {
+            text: `⚠️ *Anti-Sticker Alert*\n\n• User: ${senderName}\n• Action: Sticker Removed\n\n_Stickers are not allowed in this group._`,
+            mentions: [sender]
+          });
+        } catch (error) {
+          console.error('Error handling sticker:', error);
         }
       }
-
-      if (!msg) {
-        console.log('Message introuvable');
-        return;
-      }
-
-      // Check if the deleted message is a sticker
-      if (msg.message.stickerMessage) {
-        const senderId = msg.key.participant.split('@')[0];
-        const caption = ` Anti-delete-sticker by EliTechWiz-V4\nMessage de @${senderId}`;
-        const imageCaption = { image: { url: './media/deleted-sticker.jpg' }, caption, mentions: [msg.key.participant] };
-
-        await zk.sendMessage(origineMessage.from, imageCaption);
-        await zk.sendMessage(origineMessage.from, { forward: msg }, { quoted: msg });
-      }
-    } catch (error) {
-      console.error(error);
     }
   }
 });
