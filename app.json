@@ -70,9 +70,9 @@
      "required" :false
     },
     "OPENAI_API_KEY": {
-    "description": "Insert your OpenAI API key for AI features",
+    "description": "Insert your OpenAI API key for AI features (this is optionnal)",
     "value": "",
-    "required":true
+    "required":false
     },
   "HEROKU_APP_NAME": {
     "description": "insert your heroku APP NAME (this is optionnal)",
