@@ -14,22 +14,26 @@ hango({nomCom:"Eliah",reaction:"📡",categorie:"Ai"},async(dest,hn,commandeOpti
   const {repondre,ms,arg}=commandeOptions;
   
     if(!arg || !arg[0])
-    {return repondre("𝘿𝞛 𝙁𝞗𝞒 𝙒𝞖𝞓𝙏𝙎𝞓𝞠𝞠 𝞑𝞗𝙏.👇👇𝞑𝞗𝙏 𝙁𝞢𝞓𝙏𝙐𝞒𝞢𝙎 👇👇👇👇 👇 
-✅Keeps your account online (can be turned on and off) 
-✅Auto views status updates 24/7( can be turned on and off) 
-✅Auto reacts to incoming messages (can be turned on and off) 
-✅Auto reads messages(can be turned on and off) 
-✅ChatGpt feature(but you need to have an openAi Api key) 
-✅Games
-✅Sticker creation 
-✅Group management eg setting antilinks then the bot removes anyone who sends a link to the group. 
-✅Logo and anime creation 
-✅Songs download (both audio and video) 
-✅Fancy text creation. 
-✅And other 300+ more additional features. 
+    {return repondre("📢 *DON'T MISS OUT!* 👇👇 *GET THIS FANTASTIC BOT!* 👇👇👇👇 👇
 
-NB/: 01. ALL BOT ACTIVITIES DON'T USE YOUR PHONE'S INTERNET DATA BUNDLES, THE ACTIVITIES OCCUR ON THE WEB, YOUR PHONE CAN BE OFF BUT THE BOT IS ACTIVE AND FUNCTIONING.THE BOT WORKS INDEPENDENTLY.
+✅ Keeps your account online (can be turned on and off)
+✅ Auto views status updates 24/7 (can be turned on and off)
+✅ Auto reacts to incoming messages (can be turned on and off)
+✅ Auto reads messages (can be turned on and off)
+✅ ChatGPT feature (but you need to have an OpenAI API key)
+✅ Games
+✅ Sticker creation
+✅ Group management e.g., setting antilinks, then the bot removes anyone who sends a link to the group.
+✅ Logo and anime creation
+✅ Songs download (both audio and video)
+✅ Fancy text creation
+✅ And other 230+ more additional features.
 
+*NB/:* 01. ALL BOT ACTIVITIES DON'T USE YOUR PHONE'S INTERNET DATA BUNDLES. THE ACTIVITIES OCCUR ON THE WEB. YOUR PHONE CAN BE OFF, BUT THE BOT IS ACTIVE AND FUNCTIONING. THE BOT WORKS INDEPENDENTLY.
+
+*To get started, the price is 3000 Tanzanian Shillings (TSH) for 2 weeks. Please make the payment first to this M-Pesa number in Tanzania: +255 755 566 045. After sending the payment, please send me a screenshot as confirmation. Once payment is confirmed, the bot will be set up for you.*
+
+🔥 *PROMOTION ALERT!* 🔥 If you refer 3 people who successfully pay for the WhatsApp bot deployment, you will be awarded with a *FREE* WhatsApp bot! Don't miss this amazing offer!
 ")}
     //var quest = arg.join(' ');
   try{
