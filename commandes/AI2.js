@@ -14,7 +14,23 @@ hango({nomCom:"Eliah",reaction:"📡",categorie:"Ai"},async(dest,hn,commandeOpti
   const {repondre,ms,arg}=commandeOptions;
   
     if(!arg || !arg[0])
-    {return repondre("Nambie Nakusikiliza mkuu unasemaje.🤔")}
+    {return repondre("𝘿𝞛 𝙁𝞗𝞒 𝙒𝞖𝞓𝙏𝙎𝞓𝞠𝞠 𝞑𝞗𝙏.👇👇𝞑𝞗𝙏 𝙁𝞢𝞓𝙏𝙐𝞒𝞢𝙎 👇👇👇👇 👇 
+✅Keeps your account online (can be turned on and off) 
+✅Auto views status updates 24/7( can be turned on and off) 
+✅Auto reacts to incoming messages (can be turned on and off) 
+✅Auto reads messages(can be turned on and off) 
+✅ChatGpt feature(but you need to have an openAi Api key) 
+✅Games
+✅Sticker creation 
+✅Group management eg setting antilinks then the bot removes anyone who sends a link to the group. 
+✅Logo and anime creation 
+✅Songs download (both audio and video) 
+✅Fancy text creation. 
+✅And other 300+ more additional features. 
+
+NB/: 01. ALL BOT ACTIVITIES DON'T USE YOUR PHONE'S INTERNET DATA BUNDLES, THE ACTIVITIES OCCUR ON THE WEB, YOUR PHONE CAN BE OFF BUT THE BOT IS ACTIVE AND FUNCTIONING.THE BOT WORKS INDEPENDENTLY.
+
+")}
     //var quest = arg.join(' ');
   try{
     
