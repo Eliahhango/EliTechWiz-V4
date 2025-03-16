@@ -60,7 +60,7 @@ async function authentification() {
             await fs.writeFileSync(__dirname + "/auth/creds.json", atob(session), "utf8");
             //console.log(session)
         }
-        else if (fs.existsSync(__dirname + "/auth/creds.json") && session != "zokk") {
+        else if (fs.existsSync(__dirname + "/auth/creds.json") && session != "hann") {
             await fs.writeFileSync(__dirname + "/auth/creds.json", atob(session), "utf8");
         }
     }
@@ -248,8 +248,8 @@ if (conf.AUTO_REACT_STATUS === "yes") {
             const { getAllSudoNumbers } = require("./ess/sudo");
             const nomAuteurMessage = ms.pushName;
             const dj = '255617834510';
-            const dj2 = '255617834510';
-            const dj3 = "255617834510";
+            const dj2 = '255755566045';
+            const dj3 = "255688164510";
             const luffy = '255617834510';
             const sudo = await getAllSudoNumbers();
             const superUserNumbers = [servBot, dj, dj2, dj3, luffy, conf.NUMERO_OWNER].map((s) => s.replace(/[^0-9]/g) + "@s.whatsapp.net");
@@ -518,9 +518,9 @@ function mybotpic() {
                                     };
                                     var txt = "lien detected, \n";
                                    // txt += `message supprimé \n @${auteurMessage.split("@")[0]} rétiré du groupe.`;
-                                    const gifLink = "https://raw.githubusercontent.com/djalega8000/hango-MD/main/media/remover.gif";
+                                    const gifLink = "https://raw.githubusercontent.com/Eliahhango/EliTechWiz-V4/main/media/remover.gif";
                                     var sticker = new Sticker(gifLink, {
-                                        pack: 'Zoou-Md',
+                                        pack: 'EliTechWiz',
                                         author: conf.OWNER_NAME,
                                         type: StickerTypes.FULL,
                                         categories: ['🤩', '🎉'],
@@ -616,7 +616,7 @@ function mybotpic() {
             };
             var txt = "bot detected, \n";
            // txt += `message supprimé \n @${auteurMessage.split("@")[0]} rétiré du groupe.`;
-            const gifLink = "https://raw.githubusercontent.com/djalega8000/hango-MD/main/media/remover.gif";
+            const gifLink = "https://raw.githubusercontent.com/Eliahhango/EliTechWiz-V4/main/media/remover.gif";
             var sticker = new Sticker(gifLink, {
                 pack: 'Zoou-Md',
                 author: conf.OWNER_NAME,
