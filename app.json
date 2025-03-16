@@ -53,7 +53,7 @@
      "BOT_MENU_LINKS" : {
     
       "description":"add one or many link for your bot menu  ; eg : url1,url2,url3.....",
-      "value":"https://files.catbox.moe/vxxv26.jpeg",
+      "value":"https://files.catbox.moe/vxxv26.jpeg,https://files.catbox.moe/krme87.mp3",
       "required":false
        
      },
