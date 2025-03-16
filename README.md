@@ -131,7 +131,7 @@
 ## 📊 Repository Stats
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api/pin/?username=Eliahhango&repo=𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4&theme=tokyonight&hide_border=true" alt="Repo Stats">
+  <img src="https://github-readme-stats.vercel.app/api/pin/?username=Eliahhango&repo=EliTechWiz-V4&theme=tokyonight&hide_border=true" alt="Repo Stats">
 </div>
 
 <br>
