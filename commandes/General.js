@@ -109,7 +109,7 @@ hango({ nomCom: "support", categorie: "General", reaction: "💫" }, async (dest
 │ • https://whatsapp.com/channel/0029VaeEYF0BvvsZpaTPfL2s
 │
 │ *👥 Community Group*
-│ • https://chat.whatsapp.com/Lh5EQEYJn5VIa4atNRPBm5
+│ • https://chat.whatsapp.com/CK55DhCbb2q6UihlzPBTkP
 │
 │ *🎥 YouTube Channel*
 │ • https://youtube.com/@eliahhango
