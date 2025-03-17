@@ -15,10 +15,10 @@ hango({nomCom : "instagram" , categorie : "Download"},async (dest , hn , command
     let igvid = await axios('https://vihangayt.me/download/instagram?url='+link)
 
     if (igvid.data.data.data[0].type == 'video') {
-    hn.sendMessage(dest,{video : {url : igvid.data.data.data[0].url},caption : "ig video downloader powered by *Bmw-Md*",gifPlayback : false },{quoted : ms}) 
+    hn.sendMessage(dest,{video : {url : igvid.data.data.data[0].url},caption : "ig video downloader powered by * 𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4*",gifPlayback : false },{quoted : ms}) 
     }
     else {
-        hn.sendMessage(dest,{image : {url : igvid.data.data.data[0].url},caption : "ig image downloader powered by *Bmw-Md*"})
+        hn.sendMessage(dest,{image : {url : igvid.data.data.data[0].url},caption : "ig image downloader powered by * 𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4*"})
     }
   
   } catch (e) {repondre("erreur survenue lors du téléchargement \n " + e)}
@@ -49,7 +49,7 @@ async (dest, hn, commandeOptions) => {
         Lien: ${result.url}
       `;
        hn.sendMessage(dest,{image : { url : result.thumbnail}, caption : caption},{quoted : ms}) ;
-       hn.sendMessage(dest, { video: { url: result.hd  }, caption: 'facebook video downloader powered by *Bmw-MD*' }, { quoted: ms });
+       hn.sendMessage(dest, { video: { url: result.hd  }, caption: 'facebook video downloader powered by * 𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4*' }, { quoted: ms });
       
     })
     .catch((error) => {console.log("Error:", error)
@@ -113,7 +113,7 @@ async (dest, hn, commandeOptions) => {
         Lien: ${result.url}
       `;
        hn.sendMessage(dest,{image : { url : result.thumbnail}, caption : caption},{quoted : ms}) ;
-       hn.sendMessage(dest, { video: { url: result.sd  }, caption: 'facebook video downloader powered by *Bmw-MD*' }, { quoted: ms });
+       hn.sendMessage(dest, { video: { url: result.sd  }, caption: 'facebook video downloader powered by * 𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4*' }, { quoted: ms });
       
     })
     .catch((error) => {console.log("Error:", error)
