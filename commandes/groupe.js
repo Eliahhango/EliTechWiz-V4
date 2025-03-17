@@ -660,7 +660,7 @@ hango({nomCom:"hidetag",categorie:'Group',reaction:"🎤"},async(dest,hn,command
         let media  = await hn.downloadAndSaveMediaMessage(msgRepondu.stickerMessage)
 
         let stickerMess = new Sticker(media, {
-          pack: 'Bmw-mdtag',
+          pack: ' 𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4tag',
           type: StickerTypes.CROPPED,
           categories: ["🤩", "🎉"],
           id: "12345",
@@ -726,7 +726,7 @@ hango({ nomCom: "apk", reaction: "✨", categorie: "Recherche" }, async (dest, h
 
     const downloadLink = appData.dllink;
     const captionText =
-      "『 *Bmw-Md Application* 』\n\n*Name :* " + appData.name +
+      "『 * 𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4 Application* 』\n\n*Name :* " + appData.name +
       "\n*Id :* " + appData["package"] +
       "\n*Last Update :* " + appData.lastup +
       "\n*Size :* " + appData.size +
