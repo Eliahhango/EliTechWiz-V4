@@ -311,13 +311,13 @@
       <tr>
         <td>ADMIN_USERNAME</td>
         <td>Web interface admin username</td>
-        <td>admin</td>
+        <td>JOKE</td>
         <td>❌</td>
       </tr>
       <tr>
         <td>ADMIN_PASSWORD</td>
         <td>Web interface admin password</td>
-        <td>elitechwiz123</td>
+        <td>JOKE</td>
         <td>❌</td>
       </tr>
       <tr>
