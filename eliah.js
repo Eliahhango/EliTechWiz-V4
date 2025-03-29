@@ -38,8 +38,6 @@ let fs = require("fs-extra");
 let path = require("path");
 const FileType = require('file-type');
 const { Sticker, createSticker, StickerTypes } = require('wa-sticker-formatter');
-// Add atob function for Node.js environment
-const atob = (data) => Buffer.from(data, 'base64').toString('binary');
 //import chalk from 'chalk'
 const { verifierEtatJid , recupererActionJid } = require("./ess/antilien");
 const { atbverifierEtatJid , atbrecupererActionJid } = require("./ess/antibot");
@@ -55,55 +53,23 @@ const more = String.fromCharCode(8206)
 const readmore = more.repeat(4001)
 
 async function authentification() {
-  try {
-    if (!session || session === "hann" || session.length < 10) {
-      console.log("Invalid session data. Please check your session configuration.");
-      return false;
+    try {
+        //console.log("le data "+data)
+        if (!fs.existsSync(__dirname + "/auth/creds.json")) {
+            console.log("connexion en cour ...");
+            await fs.writeFileSync(__dirname + "/auth/creds.json", atob(session), "utf8");
+            //console.log(session)
+        }
+        else if (fs.existsSync(__dirname + "/auth/creds.json") && session != "hann") {
+            await fs.writeFileSync(__dirname + "/auth/creds.json", atob(session), "utf8");
+        }
     }
-    
-    // Create auth directory if it doesn't exist
-    if (!fs.existsSync(__dirname + "/auth")) {
-      fs.mkdirSync(__dirname + "/auth", { recursive: true });
-      console.log("Created auth directory");
+    catch (e) {
+        console.log("Session Invalid " + e);
+        return;
     }
-    
-    if (!fs.existsSync(__dirname + "/auth/creds.json")) {
-      console.log("Connection in progress...");
-      try {
-        await fs.writeFileSync(__dirname + "/auth/creds.json", atob(session), "utf8");
-        console.log("Session credentials written successfully");
-        return true;
-      } catch (e) {
-        console.error("Error decoding session data:", e);
-        return false;
-      }
-    } else if (fs.existsSync(__dirname + "/auth/creds.json") && session !== "hann") {
-      try {
-        const decodedSession = atob(session);
-        // Validate that the decoded session is valid JSON
-        JSON.parse(decodedSession);
-        await fs.writeFileSync(__dirname + "/auth/creds.json", decodedSession, "utf8");
-        console.log("Session credentials updated successfully");
-        return true;
-      } catch (e) {
-        console.error("Error updating session: Invalid session data format", e);
-        return false;
-      }
-    }
-    return true;
-  } catch (e) {
-    console.error("Session authentication error:", e);
-    return false;
-  }
 }
-
-// Execute authentication
-const authSuccess = await authentification();
-if (!authSuccess) {
-  console.error("Authentication failed. Please check your session configuration.");
-  process.exit(1);
-}
-
+authentification();
 const store = (0, baileys_1.makeInMemoryStore)({
     logger: pino().child({ level: "silent", stream: "store" }),
 });
@@ -141,7 +107,7 @@ setTimeout(() => {
             ///////
         };
         const hn = (0, baileys_1.default)(sockOptions);
-        store.bind(hn.ev);
+store.bind(hn.ev);
         
         
 
@@ -160,12 +126,6 @@ function getCurrentDateTime() {
     const dateTime = new Intl.DateTimeFormat('en-KE', options).format(new Date());
     return dateTime;
 }
-
-// Import web interface
-const { startWebServer } = require('./web/server');
-
-// Initialize web interface with WhatsApp client
-const webInterface = startWebServer(hn, store);
 
 // Auto Bio Update Interval
 setInterval(async () => {
@@ -598,28 +558,28 @@ function mybotpic() {
                                     } else if(action === 'warn') {
                                         const {getWarnCountByJID ,ajouterUtilisateurAvecWarnCount} = require('./ess/warn') ;
 
-                                let warn = await getWarnCountByJID(auteurMessage) ; 
-                                let warnlimit = conf.WARN_COUNT
-                             if ( warn >= warnlimit) { 
-                              var kikmsg = `link detected , you will be remove because of reaching warn-limit`;
-                                
-                                 await hn.sendMessage(origineMessage, { text: kikmsg , mentions: [auteurMessage] }, { quoted: ms }) ;
+                            let warn = await getWarnCountByJID(auteurMessage) ; 
+                            let warnlimit = conf.WARN_COUNT
+                         if ( warn >= warnlimit) { 
+                          var kikmsg = `link detected , you will be remove because of reaching warn-limit`;
+                            
+                             await hn.sendMessage(origineMessage, { text: kikmsg , mentions: [auteurMessage] }, { quoted: ms }) ;
 
 
-                                 await hn.groupParticipantsUpdate(origineMessage, [auteurMessage], "remove");
-                                 await hn.sendMessage(origineMessage, { delete: key });
+                             await hn.groupParticipantsUpdate(origineMessage, [auteurMessage], "remove");
+                             await hn.sendMessage(origineMessage, { delete: key });
 
 
-                                } else {
-                                    var rest = warnlimit - warn ;
-                                  var  msg = `Link detected , your warn_count was upgrade ;\n rest : ${rest} `;
+                            } else {
+                                var rest = warnlimit - warn ;
+                              var  msg = `Link detected , your warn_count was upgrade ;\n rest : ${rest} `;
 
-                                  await ajouterUtilisateurAvecWarnCount(auteurMessage)
+                              await ajouterUtilisateurAvecWarnCount(auteurMessage)
 
-                                  await hn.sendMessage(origineMessage, { text: msg , mentions: [auteurMessage] }, { quoted: ms }) ;
-                                  await hn.sendMessage(origineMessage, { delete: key });
+                              await hn.sendMessage(origineMessage, { text: msg , mentions: [auteurMessage] }, { quoted: ms }) ;
+                              await hn.sendMessage(origineMessage, { delete: key });
 
-                                }
+                            }
                                     }
                                 }
                                 
@@ -696,10 +656,10 @@ function mybotpic() {
             } else if(action === 'warn') {
                 const {getWarnCountByJID ,ajouterUtilisateurAvecWarnCount} = require('./ess/warn') ;
 
-let warn = await getWarnCountByJID(auteurMessage) ; 
-let warnlimit = conf.WARN_COUNT
-if ( warn >= warnlimit) { 
- var kikmsg = `bot detected ;you will be remove because of reaching warn-limit`;
+    let warn = await getWarnCountByJID(auteurMessage) ; 
+    let warnlimit = conf.WARN_COUNT
+ if ( warn >= warnlimit) { 
+  var kikmsg = `bot detected ;you will be remove because of reaching warn-limit`;
     
      await hn.sendMessage(origineMessage, { text: kikmsg , mentions: [auteurMessage] }, { quoted: ms }) ;
 
@@ -708,17 +668,17 @@ if ( warn >= warnlimit) {
      await hn.sendMessage(origineMessage, { delete: key });
 
 
-} else {
-    var rest = warnlimit - warn ;
-  var  msg = `bot detected , your warn_count was upgrade ;\n rest : ${rest} `;
+    } else {
+        var rest = warnlimit - warn ;
+      var  msg = `bot detected , your warn_count was upgrade ;\n rest : ${rest} `;
 
-  await ajouterUtilisateurAvecWarnCount(auteurMessage)
+      await ajouterUtilisateurAvecWarnCount(auteurMessage)
 
-  await hn.sendMessage(origineMessage, { text: msg , mentions: [auteurMessage] }, { quoted: ms }) ;
-  await hn.sendMessage(origineMessage, { delete: key });
+      await hn.sendMessage(origineMessage, { text: msg , mentions: [auteurMessage] }, { quoted: ms }) ;
+      await hn.sendMessage(origineMessage, { delete: key });
 
-}
-            }
+    }
+                }
         }
     }
     catch (er) {
@@ -1034,18 +994,7 @@ hn.ev.on('group-participants.update', async (group) => {
 
                                 const {exec}=require("child_process") ;
 
-                                console.log(chalk.green('Restart initiated...'));
-                                // Add proper error handling for the exec command
-                                exec("pm2 restart all", (error, stdout, stderr) => {
-                                  if (error) {
-                                    console.error(chalk.red('Error during restart:'), error);
-                                    return;
-                                  }
-                                  if (stderr) {
-                                    console.warn(chalk.yellow('Restart warning:'), stderr);
-                                  }
-                                  console.log(chalk.green('Restart successful:'), stdout);
-                                });
+                                exec("pm2 restart all");            
                 }
                 // sleep(50000)
                 console.log("hum " + connection);
