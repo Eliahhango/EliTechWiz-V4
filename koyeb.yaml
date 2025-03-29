@@ -1,0 +1,25 @@
+name: elitechwiz-v4
+type: web
+regions:
+  - fra
+instance_type: nano
+env: node16
+git:
+  repository: github.com/Eliahhango/EliTechWiz-V4
+  branch: main
+build:
+  builder: nixpacks
+  buildCommand: npm install
+run:
+  command: npm run koyeb
+ports:
+  - port: 5000
+    http: true
+health_checks:
+  - type: tcp
+    port: 5000
+    initial_delay: 30s
+    interval: 15s
+    timeout: 10s
+    success_threshold: 1
+    failure_threshold: 3 
