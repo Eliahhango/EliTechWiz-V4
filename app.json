@@ -1,123 +1,134 @@
 {
-  "name": "EliTechWiz-V4",
-  "description": "Advanced WhatsApp Bot with Multi-Platform Deployment Support",
-  "keywords": ["bot", "whatsapp", "baileys", "ai", "chatbot", "EliTechWiz"],
-  "logo": "https://files.catbox.moe/vxxv26.jpeg",
-  "repository": "https://github.com/Eliahhango/EliTechWiz-V4",
-  "website": "https://github.com/Eliahhango/EliTechWiz-V4#readme",
-  "success_url": "/",
-  "stack": "container",
-  "env": {
-    "PREFIX": {
-      "description": "Choose your prefix for bot commands",
-      "value": "~",
-      "required": true
+  "name":"𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4",
+  "description":"Best whatsapp bot developed by 𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4 ",
+  "keywords":["bot","node","baileys","whatsapp"],
+  "logo":"https://files.catbox.moe/vxxv26.jpeg",
+  "repository":"https://github.com/Eliahhango/EliTechWiz-V4",
+  "succes_url":"/",
+  "stack":"container",
+  "env":{
+    "PREFIX": 
+    {
+      "description":"choose your prefix of bot",
+      "value":".",
+      "required":true
     },
-    "SESSION_ID": {
-      "description": "Your session ID (the code you receive after scanning QR code)",
-      "value": "",
-      "required": true
+    "ANTILINK_GROUP":
+    {
+      "description":"Enter yes for your bot to auto delete links and remove link senders",
+      "value":"yes",
+      "required":false
     },
-    "PUBLIC_MODE": {
-      "description": "Set to 'yes' for public mode or 'no' for private mode",
-      "value": "yes",
-      "required": false
-    },
-    "BOT_NAME": {
-      "description": "Name for your bot",
-      "value": "EliTechWiz-V4",
-      "required": false
-    },
-    "OWNER_NAME": {
-      "description": "Your name as the bot owner",
-      "value": "Eliah Hango",
-      "required": false
-    },
-    "NUMERO_OWNER": {
-      "description": "Your WhatsApp number without '+' (include country code)",
-      "value": "255617834510",
-      "required": false
-    },
-    "BOT_MENU_LINKS": {
-      "description": "Image URLs for your bot menu (comma-separated)",
-      "value": "https://files.catbox.moe/vxxv26.jpeg",
-      "required": false
-    },
-    "PM_PERMIT": {
-      "description": "Prevent users from using bot in private messages ('yes' to enable)",
-      "value": "no",
-      "required": false
-    },
-    "ANTILINK_GROUP": {
-      "description": "Auto-delete links and remove senders ('yes' to enable)",
-      "value": "yes",
-      "required": false
-    },
-    "AUTO_READ_STATUS": {
-      "description": "Automatically read contact statuses ('yes' to enable)",
-      "value": "yes",
-      "required": false
-    },
+    "AUTO_READ_STATUS":
+    {
+      "description":"Your contact status will be read automatically(type yes to active or no to deactive  ; don't write in capital letter)",
+      "value":"yes",
+      "required":false
+	},
     "AUTO_REACT_STATUS": {
-      "description": "Automatically react to contact statuses ('yes' to enable)",
+      "description": "Your contact status will be react automatically (type 'yes' to activate or 'no' to deactivate; don't write in capital letters)",
       "value": "yes",
       "required": false
-    },
-    "AUTO_DOWNLOAD_STATUS": {
-      "description": "Automatically download and send contact statuses ('yes' to enable)",
-      "value": "no",
-      "required": false
-    },
-    "AUTO_BIO": {
-      "description": "Automatically update bot bio with time ('yes' to enable)",
-      "value": "yes",
-      "required": false
-    },
-    "WARN_COUNT": {
-      "description": "Maximum warnings before action is taken",
-      "value": "3",
-      "required": false
-    },
-    "STARTING_BOT_MESSAGE": {
-      "description": "Show startup message ('yes' to enable)",
-      "value": "yes",
-      "required": false
-    },
-    "ANTI_DELETE_MESSAGE": {
-      "description": "Forward deleted messages to your inbox ('yes' to enable)",
-      "value": "yes",
-      "required": false
-    },
-    "PRESENCE": {
-      "description": "Bot presence status: 1=online, 2=typing, 3=recording, blank=real state",
-      "value": "",
-      "required": false
-    },
-    "DATABASE_URL": {
-      "description": "PostgreSQL database URL (optional)",
-      "value": "",
-      "required": false
+    }, "AUTO_DOWNLOAD_STATUS":
+    {
+      "description":"Your contact status will be download automatically and send to you(type yes to active or no to deactive ; don't write in capital letter)",
+      "value":"no",
+      "required":false
+    }
+    ,
+     "PM_PERMIT" :
+     {
+      "description":"Other user can't use your bot in pm (type yes to active or no to deactive ; don't write in capital letter)",
+      "value":"no",
+      "required":false
+    }
+    ,
+    "BOT_NAME" : {
+       
+      "description":"put A name for your bot",
+      "value":"𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4",
+      "required":false
+
+    } ,
+     "BOT_MENU_LINKS" : {
+    
+      "description":"add one or many link for your bot menu  ; eg : url1,url2,url3.....",
+      "value":"https://files.catbox.moe/vxxv26.jpeg",
+      "required":false
+       
+     },
+    "PUBLIC_MODE":
+    {
+      "description":"type yes to put your bot on public mode or no to put it on private mod",
+      "value":"yes",
+      "required":false
+    }
+	,
+    "HEROKU_API_KEY": {
+    "description": "insert your heroku api-key (this is optionnal)",
+	"value":"",    
+     "required" :false
     },
     "OPENAI_API_KEY": {
-      "description": "OpenAI API key for AI features",
-      "value": "",
-      "required": false
+    "description": "Insert your OpenAI API key for AI features",
+    "value": "",
+    "required":false
     },
-    "HEROKU_API_KEY": {
-      "description": "Your Heroku API key (optional)",
-      "value": "",
-      "required": false
+  "HEROKU_APP_NAME": {
+    "description": "insert your heroku APP NAME (this is optionnal)",
+     "required" :false
+    }  
+	  ,
+    "SESSION_ID":
+    {
+      "description":"put your session ID , the code you receive after scanning Qr code",   
+      "value":"",
+      "required":true
+      
     },
-    "HEROKU_APP_NAME": {
-      "description": "Your Heroku app name (optional)",
-      "value": "",
-      "required": false
-    }
+    "OWNER_NAME":
+    {
+    
+    "desc": "Your Name",
+    "required": false,
+    "value": "𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4"
   },
-  "buildpacks": [
+    "NUMERO_OWNER":
+  {
+    
+    "desc": "Your number , dont put '+' and put you area code(exemple of togo '228')",
+    "required":false,
+    "value": "255617834510"
+  },
+    "WARN_COUNT":
+  {
+    "desc": "this is the limit of warn for warning commandes",
+    "required": false,
+    "value": "3"
+  },
+  "STARTING_BOT_MESSAGE":
+  {
+    "description": "if you don't want startting-bot-message put no else put yes",
+    "required": true,
+    "value": "yes"
+  },
+  "PRESENCE":{
+    "description":"Mark your presence: 1 to indicate that you are online even if you are not. 2 to indicate that you are currently typing a message. 3 to indicate that you are currently recording an audio. Or leave the field blank to indicate your real state.",
+    "value":"",
+    "required": false
+ },
+  "ANTIDELETE_MESSAGES" : {
+    "description": "Deleted messages will be sent to your inbox, enter yes to enable else put no",
+    "value": "yes",
+        "required": false
+  }
+  },
+
+    "buildpacks": [
     {
       "url": "heroku/nodejs"
     },
+
     {
       "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
     },
@@ -128,7 +139,7 @@
   "formation": {
     "worker": {
       "quantity": 1,
-      "size": "basic"
+      "size": "standard-2x"
     }
   },
   "addons": [
@@ -137,3 +148,4 @@
     }
   ]
 }
+
