@@ -440,7 +440,7 @@ EliTechWiz now includes a fully-functional WhatsApp Web interface where you can:
 
 1. Start the bot using `npm start`
 2. Open your browser and navigate to `http://localhost:5000`
-3. Log in with your admin credentials (default: username `admin`, password `elitechwiz123`)
+3. Log in with your admin credentials (default: username `admin`, password `admin`)
 4. You'll see a WhatsApp Web-like interface connected to your bot
 
 ### 🔒 Security
