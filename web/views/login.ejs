@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EliTechWiz-V4 Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="icon" href="/img/default-avatar.png" type="image/png">
+  <style>
+    :root {
+      --whatsapp-green: #00a884;
+      --sidebar-bg: #ffffff;
+      --text-primary: #111b21;
+      --text-secondary: #667781;
+      --input-bg: #f0f2f5;
+      --danger: #f15c6d;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    
+    .login-container {
+      width: 100%;
+      max-width: 450px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      text-align: center;
+    }
+    
+    .login-logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+    
+    h1 {
+      font-size: 24px;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    
+    p {
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+    }
+    
+    form {
+      text-align: left;
+    }
+    
+    .input-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+    
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #e9edef;
+      border-radius: 6px;
+      background-color: var(--input-bg);
+      font-size: 16px;
+      outline: none;
+    }
+    
+    input:focus {
+      border-color: var(--whatsapp-green);
+    }
+    
+    .error-message {
+      color: var(--danger);
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+    
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--whatsapp-green);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    button:hover {
+      background-color: #009576;
+    }
+    
+    .footer {
+      margin-top: 30px;
+      color: var(--text-secondary);
+      font-size: 12px;
+    }
+
+    .signup-link {
+      margin-top: 20px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .signup-link a {
+      color: var(--whatsapp-green);
+      text-decoration: none;
+    }
+
+    .signup-link a:hover {
+      text-decoration: underline;
+    }
+
+    .logo-fallback {
+      width: 60px;
+      height: 60px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 10px;
+    }
+
+    .logo-fallback i {
+      font-size: 32px;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <img src="/img/default-avatar.png" alt="EliTechWiz Logo" class="login-logo">
+    <h1>EliTechWiz-V4 Admin</h1>
+    <p>Enter your credentials to access the WhatsApp Web interface</p>
+    
+    <% if (error) { %>
+      <div class="error-message">
+        <i class="fas fa-exclamation-circle"></i> <%= error %>
+      </div>
+    <% } %>
+    
+    <form action="/login" method="POST">
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required autocomplete="username">
+      </div>
+      
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required autocomplete="current-password">
+      </div>
+      
+      <button type="submit">Log In</button>
+    </form>
+    
+    <% if (showSignup) { %>
+    <div class="signup-link">
+      First time? <a href="/signup">Create Admin Account</a>
+    </div>
+    <% } %>
+    
+    <div class="footer">
+      &copy; <%= new Date().getFullYear() %> EliTechWiz-V4 - Admin access only
+    </div>
+  </div>
+</body>
+</html> 
