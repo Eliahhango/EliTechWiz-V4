@@ -1,5 +1,5 @@
 web: npm start
-worker: npm start
+worker: npm run toshtech
 
 
 
