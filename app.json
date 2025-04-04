@@ -3,7 +3,7 @@
   "description":"Best whatsapp bot developed by EliTechWiz-V4 ",
   "keywords":["bot","node","baileys","whatsapp"],
   "logo":"https://files.catbox.moe/vxxv26.jpeg",
-  "repository":"https://github.com/Eliahhango/EliTechWiz-V4",
+  "repository":"https://github.com/Eliahhango/EliTechWiz-V4.git",
   "succes_url":"/",
   "stack":"container",
   "env":{
