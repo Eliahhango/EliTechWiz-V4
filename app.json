@@ -1,6 +1,6 @@
 {
-  "name":"𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4",
-  "description":"Best whatsapp bot developed by 𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4 ",
+  "name":"EliTechWiz-V4",
+  "description":"Best whatsapp bot developed by EliTechWiz-V4 ",
   "keywords":["bot","node","baileys","whatsapp"],
   "logo":"https://files.catbox.moe/vxxv26.jpeg",
   "repository":"https://github.com/Eliahhango/EliTechWiz-V4",
@@ -46,7 +46,7 @@
     "BOT_NAME" : {
        
       "description":"put A name for your bot",
-      "value":"𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4",
+      "value":"EliTechWiz-V4",
       "required":false
 
     } ,
@@ -69,11 +69,6 @@
 	"value":"",    
      "required" :false
     },
-    "OPENAI_API_KEY": {
-    "description": "Insert your OpenAI API key for AI features",
-    "value": "",
-    "required":false
-    },
   "HEROKU_APP_NAME": {
     "description": "insert your heroku APP NAME (this is optionnal)",
      "required" :false
@@ -91,7 +86,7 @@
     
     "desc": "Your Name",
     "required": false,
-    "value": "𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4"
+    "value": "EliTechWiz-V4"
   },
     "NUMERO_OWNER":
   {
@@ -148,4 +143,3 @@
     }
   ]
 }
-
