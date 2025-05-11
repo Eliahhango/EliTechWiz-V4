@@ -1,136 +1,153 @@
 {
-  "name":"EliTechWiz-V4",
-  "description":"Best whatsapp bot developed by EliTechWiz-V4 ",
-  "keywords":["bot","node","baileys","whatsapp"],
-  "logo":"https://files.catbox.moe/vxxv26.jpeg",
-  "repository":"https://github.com/Eliahhango/EliTechWiz-V4.git",
-  "succes_url":"/",
-  "stack":"container",
-  "env":{
-    "PREFIX": 
-    {
-      "description":"choose your prefix of bot",
-      "value":".",
-      "required":true
+  "name": "EliTechWiz-V4",
+  "description": "EliTechWiz-V4 is a multidevice WhatsApp bot built to make your WhatsApp enjoyable...",
+  "keywords": [
+    "bot",
+    "node",
+    "baileys",
+    "whatsapp"
+  ],
+  "logo": "",
+  "repository": "https://github.com/Eliahhango/EliTechWiz-V4",
+  "succes_url": "/",
+  "stack": "container",
+  "env": {
+        "PREFIX": {
+      "description": "Choose your bot's prefix",
+      "value": ".",
+      "required": true
     },
-    "ANTILINK_GROUP":
-    {
-      "description":"Enter yes for your bot to auto delete links and remove link senders",
-      "value":"yes",
-      "required":false
-    },
-    "AUTO_READ_STATUS":
-    {
-      "description":"Your contact status will be read automatically(type yes to active or no to deactive  ; don't write in capital letter)",
-      "value":"yes",
-      "required":false
-	},
-    "AUTO_REACT_STATUS": {
-      "description": "Your contact status will be react automatically (type 'yes' to activate or 'no' to deactivate; don't write in capital letters)",
+    "AUTO_READ_STATUS": {
+      "description": "Your contact status will be read automatically (type 'yes' to activate or 'no' to deactivate; don't write in capital letters)",
       "value": "yes",
       "required": false
-    }, "AUTO_DOWNLOAD_STATUS":
-    {
-      "description":"Your contact status will be download automatically and send to you(type yes to active or no to deactive ; don't write in capital letter)",
-      "value":"no",
-      "required":false
-    }
-    ,
-     "PM_PERMIT" :
-     {
-      "description":"Other user can't use your bot in pm (type yes to active or no to deactive ; don't write in capital letter)",
-      "value":"no",
-      "required":false
-    }
-    ,
-    "BOT_NAME" : {
-       
-      "description":"put A name for your bot",
-      "value":"EliTechWiz-V4",
-      "required":false
-
-    } ,
-     "BOT_MENU_LINKS" : {
-    
-      "description":"add one or many link for your bot menu  ; eg : url1,url2,url3.....",
-      "value":"https://files.catbox.moe/vxxv26.jpeg",
-      "required":false
-       
-     },
-    "PUBLIC_MODE":
-    {
-      "description":"type yes to put your bot on public mode or no to put it on private mod",
-      "value":"yes",
-      "required":false
-    }
-	,
+    },
+    "GREET": {
+      "description": "when enabled it automatically sends  greeting message to members in your pm",
+      "value": "no",
+      "required": false
+    },
+    "AUTO_LIKE_STATUS": {
+      "description": "Your contact status will be liked automatically (type 'yes' to activate or 'no' to deactivate; don't write in capital letters)",
+      "value": "yes",
+      "required": false
+    },
+    "AUTOBIO": {
+      "description": "This automatically update your bio status.Always make sure you insert your OWNER_NAME since it uses that to update your bio name status",
+      "value": "yes",
+      "required": false
+    },
+    "AUTO_DOWNLOAD_STATUS": {
+      "description": "Your contact status will be downloaded automatically and sent to you (type 'yes' to activate or 'no' to deactivate; don't write in capital letters)",
+      "value": "no",
+      "required": false
+    },
+    "PM_PERMIT": {
+      "description": "Restrict other users from using your bot in private messages (type 'yes' to activate or 'no' to deactivate; don't write in capital letters)",
+      "value": "yes",
+      "required": false
+    },
+    "AUTO_STATUS_MSG": {
+      "description": "type your genuine status message",
+      "value": "viewed ✅✅",
+      "required": false
+    },
+    "AUTO_STATUS_REPLY": {
+      "description": "type your genuine status message",
+      "value": "no",
+      "required": false
+    },
+    "ANTICALL_MSG": {
+      "description": "Type your anticall message to always send when calls are declined.You can as well leave it blank",
+      "value": "EliTechWiz is busy",
+      "required": false
+    },
+    "BOT_NAME": {
+      "description": "Change this if you don't like my name",
+      "value": "EliTechWiz-V4",
+      "required": true 
+    },
+    "GROUP_CONTROL": {
+      "description": "urs if you want bot yo control group features such as antilink,antispam,antibad",
+      "value": "no",
+      "required": false
+    },
+    "PUBLIC_MODE": {
+      "description": "Set 'yes' to make your bot public or 'no' to keep it private",
+      "value": "yes",
+      "required": false
+    },
     "HEROKU_API_KEY": {
-    "description": "insert your heroku api-key (this is optionnal)",
-	"value":"",    
-     "required" :false
+      "description": "Insert your Heroku API key (required)",
+      "value": "HRKU-1e6bb54b-0fa4-478e-978d-5f1ace317903",
+      "required": true
     },
-  "HEROKU_APP_NAME": {
-    "description": "insert your heroku APP NAME (this is optionnal)",
-     "required" :false
-    }  
-	  ,
-    "SESSION_ID":
-    {
-      "description":"put your session ID , the code you receive after scanning Qr code",   
-      "value":"",
-      "required":true
-      
+    "HEROKU_APP_NAME": {
+      "description": "Insert your Heroku app name (required)",
+      "value": "",
+      "required": true
     },
-    "OWNER_NAME":
-    {
-    
-    "desc": "Your Name",
-    "required": false,
-    "value": "EliTechWiz-V4"
-  },
-    "NUMERO_OWNER":
-  {
-    
-    "desc": "Your number , dont put '+' and put you area code(exemple of togo '228')",
-    "required":false,
-    "value": "255617834510"
-  },
-    "WARN_COUNT":
-  {
-    "desc": "this is the limit of warn for warning commandes",
-    "required": false,
-    "value": "3"
-  },
-  "STARTING_BOT_MESSAGE":
-  {
-    "description": "if you don't want startting-bot-message put no else put yes",
-    "required": true,
-    "value": "yes"
-  },
-  "PRESENCE":{
-    "description":"Mark your presence: 1 to indicate that you are online even if you are not. 2 to indicate that you are currently typing a message. 3 to indicate that you are currently recording an audio. Or leave the field blank to indicate your real state.",
-    "value":"",
-    "required": false
- },
-  "ANTIDELETE_MESSAGES" : {
-    "description": "Deleted messages will be sent to your inbox, enter yes to enable else put no",
-    "value": "yes",
-        "required": false
-  }
-  },
-
-    "buildpacks": [
-    {
-      "url": "heroku/nodejs"
+    "SESSION_ID": {
+      "description": "Enter your session ID, the code you receive after scanning the QR code",
+      "value": "",
+      "required": true
     },
-
-    {
-      "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
+    "OWNER_NAME": {
+      "description": "don't you have a name bro.Insert your name here!!",
+      "value": "EliTechWiz-V4",
+      "required": true
     },
-    {
-      "url": "https://github.com/clhuang/heroku-buildpack-webp-binaries.git"
+    "URL": {
+      "description": "Change this image and input yours",
+      "value": "",
+      "required": true
+    },
+    "AUTO_READ_MESSAGES": {
+      "description": "yes toactivate no to deactivate",
+      "value": "no",
+      "required": false  
+    },
+    "NUMERO_OWNER": {
+      "description": "Your phone number (exclude '+' and area code, e.g., '255693629079')",
+      "value": "255688164510",
+      "required": false
+    },
+    "WARN_COUNT": {
+      "description": "Set the warning limit for warning commands",
+      "value": "3",
+      "required": false
+    },
+    "STARTING_BOT_MESSAGE": {
+      "description": "Set 'yes' to display a starting bot message or 'no' to disable it",
+      "value": "no",
+      "required": true
+    },
+    "PRESENCE": {
+      "description": "Mark your presence: 1 for online, 2 for typing, 3 for recording, or leave blank for real state",
+      "value": "2",
+      "required": false
+    },
+    "ANTI_DELETE_MESSAGE": {
+      "description": "Enable anti-delete message (set 'yes' to activate or 'no' to deactivate)",
+      "value": "no",
+      "required": false
+    },
+    "ANTICALL": {
+      "description": "Automatically decline incoming calls (set 'on' to activate or 'off' to deactivate)",
+      "value": "no",
+      "required": false
+    },
+    "AUTO_BLOCK": {
+      "description": "Type true if you want bot to automatically  block those who insult you in your dm ",
+      "value": "no",
+      "required": false
+    },
+    "AUTO_REACTION": {
+      "description": "Set 'yes' to enable bot reactions to messages in private chats",
+      "value": "no",
+      "required": false
     }
-  ],
+  },
   "formation": {
     "worker": {
       "quantity": 1,
@@ -142,4 +159,4 @@
       "plan": "heroku-postgresql:essential-0"
     }
   ]
-}
+    }
