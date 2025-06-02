@@ -63,7 +63,7 @@ EliTechWiz-V4 is an advanced WhatsApp automation framework, engineered for preci
 
 <div align="center">
   <details>
-    <summary><b>[ACCESS] Installation Protocols</b></summary>
+    <summary><b>[ >> CLICK TO REVEAL << ] [ACCESS] Installation Protocols</b></summary>
     <br>
     <table>
       <tr>
@@ -108,7 +108,7 @@ EliTechWiz-V4 is an advanced WhatsApp automation framework, engineered for preci
 
 <div align="center">
   <details>
-    <summary><b>[EXECUTE] Cloud Deployment Protocols</b></summary>
+    <summary><b>[ >> CLICK TO REVEAL << ] [EXECUTE] Cloud Deployment Protocols</b></summary>
     <br>
     <table align="center">
       <tr>
