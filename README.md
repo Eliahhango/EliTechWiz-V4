@@ -2,59 +2,77 @@
 
 <img width="200" src="https://files.catbox.moe/vxxv26.jpeg" alt="𝗘𝗹𝗶𝗧𝗲𝗰𝗵𝗪𝗶𝘇-𝗩𝟰 Logo" style="border-radius: 50%;"/>
 
-# 🖲️ ELITECHWIZ-V4 // NEXUS_PROTOCOL 🖲️
+# ⚡ ELITECHWIZ-V4 // NEURAL_NETWORK_ACTIVATED ⚡
   
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Major+Mono+Display&size=25&pause=1000&color=00FF00&center=true&vCenter=true&random=false&width=550&lines=INITIATING+CYPHER_STREAM...;DEPLOYING+QUANTUM_AUTOMATION...;ACCESS_GRANTED:WHATSAPP_MATRIX" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Orbitron&size=25&pause=1000&color=00FFFF&center=true&vCenter=true&random=false&width=600&lines=SYNCHRONIZING_WITH_WHATSAPP_MATRIX;DEPLOYING_AUTONOMOUS_OPERATIONS;ACCESS_LEVEL:ADMINISTRATOR" alt="Typing SVG" />
 </p>
 
 <div align="center">
   <img src="https://img.shields.io/badge/VERSION-4.0.0-black?style=for-the-badge&logo=none" />
-  <img src="https://img.shields.io/badge/PLATFORM-NODE.JS-darkgreen?style=for-the-badge&logo=node.js" />
-  <img src="https://img.shields.io/badge/STATUS-ACTIVE_//_ENCRYPTED-blueviolet?style=for-the-badge&logo=checkmarx" />
+  <img src="https://img.shields.io/badge/FRAMEWORK-NODE.JS-blue?style=for-the-badge&logo=node.js" />
+  <img src="https://img.shields.io/badge/STATUS-ONLINE_//_SECURE-green?style=for-the-badge&logo=checkmarx" />
   <br>
   <img src="https://img.shields.io/github/license/Eliahhango/EliTechWiz-V4?style=for-the-badge&logo=gitl&color=red" />
-  <img src="https://img.shields.io/github/stars/Eliahhango/EliTechWiz-V4?style=for-the-badge&logo=github&color=gray" />
-  <img src="https://img.shields.io/github/forks/Eliahhango/EliTechWiz-V4?style=for-the-badge&logo=github&color=white" />
+  <img src="https://img.shields.io/github/stars/Eliahhango/EliTechWiz-V4?style=for-the-badge&logo=github&color=gold" />
+  <img src="https://img.shields.io/github/forks/Eliahhango/EliTechWiz-V4?style=for-the-badge&logo=github&color=silver" />
 </div>
 
 <br>
 
-<img width="900" height="auto" src="https://files.catbox.moe/vxxv26.jpeg" alt="Binary Flow" style="border-radius: 15px; border: 2px solid #00ff00;"/>
+<img width="900" height="auto" src="https://files.catbox.moe/vxxv26.jpeg" alt="Data Stream" style="border-radius: 15px; border: 3px solid #00FFFF;"/>
 
 </div>
 
-```ansi
-[0;32m███████████████████████████████████████████████████████████████████████
-[0m
-[0;32m█  [0;35m>[INITIATING_PROTOCOL][0;32m ELITECHWIZ-V4: A next-gen WhatsApp automation framework.[0m
-[0;32m█  Designed for seamless integration and stealth operations within the WhatsApp matrix.[0m
-[0;32m█  Secure, rapid, and adaptable to various digital environments.[0m
-[0;32m█  [0;35m>[ACCESS_LEVEL]:[0;32m UNRESTRICTED[0m
-[0;32m█  [0;35m>[STATUS]:[0;32m FULLY OPERATIONAL[0m
-[0;32m███████████████████████████████████████████████████████████████████████
-[0m
+```mermaid
+graph TD
+    A[User Interaction] --> B(WhatsApp Bot);
+    B --> C{Core Functions};
+    C --> D[Multi-Device Support];
+    C --> E[AI Capabilities];
+    C --> F[Media Management];
+    C --> G[Security Protocols];
+    D --> H[Seamless Connection];
+    E --> I[Intelligent Responses];
+    F --> J[Downloads & Uploads];
+    G --> K[Data Protection];
 ```
 
-## 🔑 SETUP_KEY
+---
 
-```ansi
-[0;36m┌──────────────────────────────────────┐
-[0;36m│ [0;33m>> [0;37mDeployment Sequence Activated [0;33m<<[0;36m │
-[0;36m└──────────────────────────────────────┘
-[0m
+## 💠 ABOUT_SYSTEM // ELITECHWIZ_PROTOCOL
+
+```yaml
+version: 4.0.0
+status: active
+platform: Node.js
+architecture: multi-device
+capabilities:
+  - real-time automation
+  - secure communication
+  - media processing
+  - interactive modules
+  - AI-driven responses
+```
+
+EliTechWiz-V4 is an advanced WhatsApp automation framework, engineered for precision and reliability. Operating on a robust Node.js foundation, it facilitates seamless interactions across multiple devices. Its core design emphasizes unparalleled speed, fortified security, and intelligent, adaptable functionality, ensuring optimal performance 24/7 within the WhatsApp ecosystem.
+
+---
+
+## ⚙️ DEPLOYMENT_SEQUENCE // INITIATE_INSTALLATION
+
 <div align="center">
   <details>
-    <summary><b>[DECRYPT] Installation Protocol</b></summary>
+    <summary><b>[ACCESS] Installation Protocols</b></summary>
     <br>
     <table>
       <tr>
-        <th>STEP_ID</th>
-        <th>ACTION_REQUIRED</th>
+        <th>PHASE</th>
+        <th>OPERATION</th>
         <th>ACCESS_POINT</th>
       </tr>
       <tr>
-        <td>[0;32m1️⃣[0m</td>
+        <td><code style="color: #00FF00;">01</code></td>
         <td><b>FORK_REPOSITORY</b></td>
         <td>
           <a href="https://github.com/Eliahhango/EliTechWiz-V4/fork">
@@ -63,7 +81,7 @@
         </td>
       </tr>
       <tr>
-        <td>[0;32m2️⃣[0m</td>
+        <td><code style="color: #00FF00;">02</code></td>
         <td><b>GENERATE_PAIRING_CODE</b></td>
         <td>
           <a href="https://pairingsite-a5bc23ed8b1e.herokuapp.com/pair">
@@ -72,11 +90,11 @@
         </td>
       </tr>
       <tr>
-        <td>[0;32m3️⃣[0m</td>
-        <td><b>SCAN_QR_FOR_CONNECTION</b></td>
+        <td><code style="color: #00FF00;">03</code></td>
+        <td><b>SCAN_MATRIX_FOR_CONNECTION</b></td>
         <td>
           <a href="https://pairingsite-a5bc23ed8b1e.herokuapp.com/eliahqr">
-            <img src="https://img.shields.io/badge/SCAN_MATRIX-purple?style=for-the-badge&logo=qrcode" width="150px">
+            <img src="https://img.shields.io/badge/SCAN_QR-purple?style=for-the-badge&logo=qrcode" width="150px">
           </a>
         </td>
       </tr>
@@ -84,20 +102,13 @@
   </details>
 </div>
 
-```ansi
-[0;36m└──────────────────────────────────────┘[0m
-```
+---
 
-## ☁️ DEPLOYMENT_VECTOR
+## ☁️ CLOUD_INTEGRATION // HEROKU_DEPLOYMENT
 
-```ansi
-[0;36m┌──────────────────────────────────────┐
-[0;36m│ [0;33m>> [0;37mHeroku Integration Protocol [0;33m<<[0;36m │
-[0;36m└──────────────────────────────────────┘
-[0m
 <div align="center">
   <details>
-    <summary><b>[EXECUTE] Cloud Deployment</b></summary>
+    <summary><b>[EXECUTE] Cloud Deployment Protocols</b></summary>
     <br>
     <table align="center">
       <tr>
@@ -116,60 +127,39 @@
   </details>
 </div>
 
-```ansi
-[0;36m└──────────────────────────────────────┘[0m
-```
+---
 
-## 📊 CORE_CAPABILITIES // MATRIX_FUNCTIONS
+## 🚀 CORE_FUNCTIONS // CAPABILITY_MATRIX
 
-```ansi
-[0;36m┌──────────────────────────────────────┐
-[0;36m│ [0;33m>> [0;37mSystem Functionality Overview [0;33m<<[0;36m │
-[0;36m└──────────────────────────────────────┘
-[0m
 <div align="center">
   <table>
     <tr>
-      <td align="center"><h3>🔄<br>Multi-Device<br>Integration</h3></td>
-      <td align="center"><h3>⚡<br>Hyper-Speed<br>Processing</h3></td>
-      <td align="center"><h3>🔒<br>Advanced<br>Encryption</h3></td>
-      <td align="center"><h3>♾️<br>Continuous<br>Operation</h3></td>
+      <td align="center"><h3><br>MULTI-DEVICE<br>SYNCHRONIZATION</h3></td>
+      <td align="center"><h3><br>HIGH-VELOCITY<br>EXECUTION</h3></td>
+      <td align="center"><h3><br>ADVANCED_SECURITY<br>PROTOCOL</h3></td>
+      <td align="center"><h3><br>CONTINUOUS_OPERATIONAL<br>AVAILABILITY</h3></td>
     </tr>
     <tr>
-      <td align="center"><h3>🎮<br>Interactive<br>Algorithms</h3></td>
-      <td align="center"><h3>🎧<br>Audio_Visual<br>Acquisition</h3></td>
-      <td align="center"><h3>🌐<br>Social_Network<br>Data_Stream</h3></td>
-      <td align="center"><h3>🧠<br>Cognitive_AI<br>Assistance</h3></td>
+      <td align="center"><h3><br>INTERACTIVE_ALGORITHM<br>ENGAGEMENT</h3></td>
+      <td align="center"><h3><br>MEDIA_ACQUISITION<br>MODULES</h3></td>
+      <td align="center"><h3><br>SOCIAL_NETWORK<br>INTERFACE</h3></td>
+      <td align="center"><h3><br>INTELLIGENT_AUTOMATION<br>ASSISTANT</h3></td>
     </tr>
   </table>
 </div>
 
-```ansi
-[0;36m└──────────────────────────────────────┘[0m
-```
+---
 
-## 📝 COMMAND_SYNTAX // PROTOCOL_REFERENCE
+## 📝 COMMAND_INTERFACE // PROTOCOL_REFERENCE
 
-```ansi
-[0;36m┌──────────────────────────────────────┐
-[0;36m│ [0;33m>> [0;37mCommand List & Usage [0;33m<<[0;36m │
-[0;36m└──────────────────────────────────────┘
-[0m
 <div align="center">
-  <p>To access the full spectrum of EliTechWiz-V4 capabilities, transmit the <code style="background-color: #1a1a1a; padding: 2px 5px; border-radius: 3px; color: #00ff00;">menu</code> command to your bot. This will initiate the command protocol and display available functions.</p>
+  <p>To access the full spectrum of EliTechWiz-V4 capabilities, transmit the <code style="background-color: #1a1a1a; padding: 2px 5px; border-radius: 3px; color: #00FF00;">menu</code> command to your bot. This will initiate the command protocol and display available functions.</p>
 </div>
 
-```ansi
-[0;36m└──────────────────────────────────────┘[0m
-```
+---
 
-## 🌐 NETWORK_CHANNEL // COMMS_HUB
+## 🤝 NETWORK_CONSORTIUM // COMMS_HUB
 
-```ansi
-[0;36m┌──────────────────────────────────────┐
-[0;36m│ [0;33m>> [0;37mConnect with the Collective [0;33m<<[0;36m │
-[0;36m└──────────────────────────────────────┘
-[0m
 <div align="center">
   <table>
     <tr>
@@ -187,19 +177,12 @@
   </table>
 </div>
 
-```ansi
-[0;36m└──────────────────────────────────────┘[0m
-```
+---
 
-## 📈 DATA_LOGS // OPERATIONAL_METRICS
+## 📈 OPERATIONAL_METRICS // DATA_LOGS
 
-```ansi
-[0;36m┌──────────────────────────────────────┐
-[0;36m│ [0;33m>> [0;37mSystem Performance Analytics [0;33m<<[0;36m │
-[0;36m└──────────────────────────────────────┘
-[0m
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api/pin/?username=Eliahhango&repo=EliTechWiz-V4&theme=tokyonight&hide_border=true" alt="Repo Stats">
+  <img src="https://github-readme-stats.vercel.app/api/pin/?username=Eliahhango&repo=EliTechWiz-V4&theme=dark&hide_border=true" alt="Repo Stats">
 </div>
 
 <br>
@@ -208,29 +191,26 @@
   <table>
     <tr>
       <td>
-        <img src="https://img.shields.io/github/last-commit/Eliahhango/EliTechWiz-V4?style=for-the-badge&logo=github&color=blue">
+        <img src="https://img.shields.io/github/last-commit/Eliahhango/EliTechWiz-V4?style=for-the-badge&logo=github&color=blueviolet">
       </td>
       <td>
-        <img src="https://img.shields.io/github/issues/Eliahhango/EliTechWiz-V4?style=for-the-badge&logo=github&color=red">
+        <img src="https://img.shields.io/github/issues/Eliahhango/EliTechWiz-V4?style=for-the-badge&logo=github&color=orange">
       </td>
       <td>
-        <img src="https://img.shields.io/github/contributors/Eliahhango/EliTechWiz-V4?style=for-the-badge&logo=github&color=green">
+        <img src="https://img.shields.io/github/contributors/Eliahhango/EliTechWiz-V4?style=for-the-badge&logo=github&color=darkgreen">
       </td>
     </tr>
   </table>
 </div>
 
-```ansi
-[0;36m└──────────────────────────────────────┘[0m
-```
-
 ---
 
 <div align="center">
-  <h3>💖 Engineered with Dedication by Eliah Hango 💖</h3>
+  <h3><code style="color: #00FFFF;">TERMINATING_SESSION</code></h3>
+  <p>💖 Engineered with Absolute Precision by Eliah Hango 💖</p>
   <br>
   <a href="https://github.com/Eliahhango">
-    <img src="https://img.shields.io/badge/Follow_@Eliahhango-black?style=for-the-badge&logo=github&logoColor=white">
+    <img src="https://img.shields.io/badge/FOLLOW_OPERATOR-ELIAHHANGO-black?style=for-the-badge&logo=github&logoColor=white">
   </a>
   <br><br>
   <img src="https://profile-counter.glitch.me/EliTechWiz-V4/count.svg" alt="Visitor Count">
