@@ -80,7 +80,7 @@ setTimeout(() => {
         const sockOptions = {
             version,
             logger: pino({ level: "silent" }),
-            browser: [' 𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4', "safari", "1.0.0"],
+            browser: [' 𝗘𝗹𝗶𝗧𝗲𝗰𝗵𝗪𝗶𝘇-𝗩𝟰', "safari", "1.0.0"],
             printQRInTerminal: true,
             fireInitQueries: false,
             shouldSyncHistoryMessage: true,
@@ -127,34 +127,84 @@ function getCurrentDateTime() {
     return dateTime;
 }
 
-// Auto Bio Update Interval
+// Inspirational programming/coding quotes with emojis
+const inspirationalQuotes = [
+    "💡 Code is like humor. When you have to explain it, it's bad. — Cory House",
+    "🚀 First, solve the problem. Then, write the code. — John Johnson",
+    "🧠 Experience is the name everyone gives to their mistakes. — Oscar Wilde",
+    "🔥 Java is to JavaScript what car is to Carpet. — Chris Heilmann",
+    "🌟 Sometimes it pays to stay in bed on Monday, rather than spending the rest of the week debugging Monday's code. — Dan Salomon",
+    "🦾 Any fool can write code that a computer can understand. Good programmers write code that humans can understand. — Martin Fowler",
+    "🎯 Code never lies, comments sometimes do. — Ron Jeffries",
+    "💻 Fix the cause, not the symptom. — Steve Maguire",
+    "🕶️ Make it work, make it right, make it fast. — Kent Beck",
+    "✨ Programming isn't about what you know; it's about what you can figure out. — Chris Pine",
+    "🔮 The best error message is the one that never shows up. — Thomas Fuchs",
+    "🤖 Talk is cheap. Show me the code. — Linus Torvalds",
+    "🧩 Simplicity is the soul of efficiency. — Austin Freeman",
+    "🦉 Knowledge is power. — Francis Bacon",
+    "🌈 Code is poetry. — Automattic",
+];
+
+// Enhanced array of emojis for status reactions with weights
+const statusEmojisWeighted = [
+    // Tech & Coding (more common)
+    "💻", "👨‍💻", "🦾", "🧠", "🎯", "✨", "🚀", "💡", "🧩", "🌟", "🤖", "🦉",
+    // Fun & Positive
+    "😎", "🔥", "😃", "😜", "😇", "🥳", "😏", "😈", "😺", "😸", "😻",
+    // Meme & Hacker
+    "🕶️", "🦹‍♂️", "🦸‍♂️", "🧙‍♂️", "🦄", "👾", "👻", "💀", "🦇", "🕸️",
+    // Rare/Animated-style (less common, repeated less)
+    "🦄", "🧙‍♂️", "🦸‍♂️", "👾", "🦇", "🕸️",
+    // Classic
+    "💙", "💚", "💜", "❤️", "🖤", "💛", "🤍", "🤎",
+    // Extra fun
+    "🍀", "🍕", "🍔", "🍟", "🍩", "🍿", "🍫", "🍭", "🍬", "🍦", "🍉", "🍌", "🍎", "🍒", "🍇"
+];
+
+// Function to pick a random item from an array
+function pickRandom(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
+// Function to sometimes return a combo of 2-3 emojis
+function pickEmojiCombo(arr) {
+    // 20% chance to send a combo
+    if (Math.random() < 0.2) {
+        const count = Math.floor(Math.random() * 2) + 2; // 2 or 3 emojis
+        let combo = [];
+        for (let i = 0; i < count; i++) {
+            combo.push(pickRandom(arr));
+        }
+        // Remove duplicates in combo
+        combo = [...new Set(combo)];
+        return combo.join("");
+    } else {
+        return pickRandom(arr);
+    }
+}
+
+// Auto Bio Update Interval (every 24 hours)
 setInterval(async () => {
     if (conf.AUTO_BIO === "yes") {
-        const currentDateTime = getCurrentDateTime(); // Get the current date and time
-        const bioText = `💫 𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4 💫 is online.!\n${currentDateTime}`; // Format the bio text
-        await hn.updateProfileStatus(bioText); // Update the bio
-        console.log(`Updated Bio: ${bioText}`); // Log the updated bio
+        const currentDateTime = getCurrentDateTime();
+        const quote = pickRandom(inspirationalQuotes);
+        const bioText = `${quote}\n${currentDateTime}`;
+        await hn.updateProfileStatus(bioText);
+        console.log(`Updated Bio: ${bioText}`);
     }
-}, 60000); // Update bio every 60 seconds
+}, 24 * 60 * 60 * 1000); // Update bio every 24 hours
 
-// Function to handle deleted messages
-// Other functions (auto-react, anti-delete, etc.) as needed
-        hn.ev.on("call", async (callData) => {
-  if (conf.ANTICALL === 'no') {
-    const callId = callData[0].id;
-    const callerId = callData[0].from;
-
-    await hn.rejectCall(callId, callerId);
-    await hn.sendMessage(callerId, {
-      text: "Am 𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4,, My owner is unavailable try again later"
-    });
-  }
-});
-// Utility function for delay
-const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
-
-// Track the last reaction time to prevent overflow
-let lastReactionTime = 0;
+// Immediately set a random bio on startup
+(async () => {
+    if (conf.AUTO_BIO === "yes") {
+        const currentDateTime = getCurrentDateTime();
+        const quote = pickRandom(inspirationalQuotes);
+        const bioText = `${quote}\n${currentDateTime}`;
+        await hn.updateProfileStatus(bioText);
+        console.log(`Updated Bio: ${bioText}`);
+    }
+})();
 
 // Auto-react to status updates, handling each status one-by-one without tracking
 if (conf.AUTO_REACT_STATUS === "yes") {
@@ -167,7 +217,6 @@ if (conf.AUTO_REACT_STATUS === "yes") {
             // Check if the message is a status update
             if (message.key && message.key.remoteJid === "status@broadcast") {
                 console.log("Detected status update from:", message.key.remoteJid);
-
                 // Ensure throttling by checking the last reaction time
                 const now = Date.now();
                 if (now - lastReactionTime < 5000) {  // 5-second interval
@@ -182,11 +231,12 @@ if (conf.AUTO_REACT_STATUS === "yes") {
                     continue;
                 }
 
-                // React to the status with a green heart
+                // React to the status with a random (possibly combo) emoji
+                const randomEmoji = pickEmojiCombo(statusEmojisWeighted);
                 await hn.sendMessage(message.key.remoteJid, {
                     react: {
                         key: message.key,
-                        text: "💙", // Reaction emoji
+                        text: randomEmoji, // Random or combo emoji
                     },
                 }, {
                     statusJidList: [message.key.participant, hango],
@@ -194,7 +244,7 @@ if (conf.AUTO_REACT_STATUS === "yes") {
 
                 // Log successful reaction and update the last reaction time
                 lastReactionTime = Date.now();
-                console.log(`Successfully reacted to status update by ${message.key.remoteJid}`);
+                console.log(`Successfully reacted to status update by ${message.key.remoteJid} with ${randomEmoji}`);
 
                 // Delay to avoid rapid reactions
                 await delay(2000); // 2-second delay between reactions
@@ -258,7 +308,7 @@ if (conf.AUTO_REACT_STATUS === "yes") {
             
             var dev = [dj, dj2,dj3,luffy].map((t) => t.replace(/[^0-9]/g) + "@s.whatsapp.net").includes(auteurMessage);
             function repondre(mes) { hn.sendMessage(origineMessage, { text: mes }, { quoted: ms }); }
-            console.log("\t𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4");
+            console.log("\t𝗘𝗹𝗶𝗧𝗲𝗰𝗵𝗪𝗶𝘇-𝗩𝟰");
             console.log("=========== written message===========");
             if (verifGroupe) {
                 console.log("message provenant du groupe : " + nomGroupe);
@@ -896,18 +946,18 @@ hn.ev.on('group-participants.update', async (group) => {
         hn.ev.on("connection.update", async (con) => {
             const { lastDisconnect, connection } = con;
             if (connection === "connecting") {
-                console.log("ℹ️ 𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4 is connecting...");
+                console.log("ℹ️ 𝗘𝗹𝗶𝗧𝗲𝗰𝗵𝗪𝗶𝘇-𝗩𝟰 is connecting...");
             }
             else if (connection === 'open') {
-                console.log("✅ 𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4 Connected to WhatsApp! ☺️");
+                console.log("✅ 𝗘𝗹𝗶𝗧𝗲𝗰𝗵𝗪𝗶𝘇-𝗩𝟰 Connected to WhatsApp! ☺️");
                 console.log("--");
                 await (0, baileys_1.delay)(200);
                 console.log("------");
                 await (0, baileys_1.delay)(300);
                 console.log("------------------/-----");
-                console.log("𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4 is Online 🕸\n\n");
+                console.log("𝗘𝗹𝗶𝗧𝗲𝗰𝗵𝗪𝗶𝘇-𝗩𝟰 is Online 🕸\n\n");
                 //chargement des commandes 
-                console.log("Loading 𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4 Commands ...\n");
+                console.log("Loading 𝗘𝗹𝗶𝗧𝗲𝗰𝗵𝗪𝗶𝘇-𝗩𝟰 Commands ...\n");
                 fs.readdirSync(__dirname + "/commandes").forEach((fichier) => {
                     if (path.extname(fichier).toLowerCase() == (".js")) {
                         try {
@@ -940,7 +990,7 @@ hn.ev.on('group-participants.update', async (group) => {
 
                 let cmsg =` ⁠⁠⁠⁠
 ╭━━━━━━━━━━━━━━━━━━━━╮
-┃    *𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4*    
+┃    *𝗘𝗹𝗶𝗧𝗲𝗰𝗵𝗪𝗶𝘇-𝗩𝟰*    
 ┃   System: Online ✨   
 ╰━━━━━━━━━━━━━━━━━━━━╯
 ┃
@@ -1084,3 +1134,189 @@ hn.ev.on('group-participants.update', async (group) => {
     });
     main();
 }, 5000);
+
+// ================= BLACKHAT ENHANCEMENTS START =================
+
+// Utility: Robust async error handler
+function safeAsync(fn, context = "") {
+    return async (...args) => {
+        try {
+            await fn(...args);
+        } catch (err) {
+            console.error(`❌ [${context}] Error:`, err);
+        }
+    };
+}
+
+// Utility: Owner/sudo check
+function isOwnerOrSudo(auteurMessage, superUser) {
+    return superUser;
+}
+
+// Utility: Sanitize text
+function sanitize(text) {
+    return String(text).replace(/[<>]/g, "");
+}
+
+// ========== NEW COMMANDS ========== //
+
+// Uptime command
+hn.ev.on("messages.upsert", safeAsync(async (m) => {
+    const { messages } = m;
+    const ms = messages[0];
+    if (!ms.message) return;
+    const texte = ms.message.conversation || ms.message.extendedTextMessage?.text || "";
+    if (texte.trim().toLowerCase() === ".uptime") {
+        const uptime = process.uptime();
+        const hours = Math.floor(uptime / 3600);
+        const minutes = Math.floor((uptime % 3600) / 60);
+        const seconds = Math.floor(uptime % 60);
+        const uptimeStr = `⏱️ Uptime: ${hours}h ${minutes}m ${seconds}s`;
+        await hn.sendMessage(ms.key.remoteJid, { text: uptimeStr }, { quoted: ms });
+    }
+}, "UptimeCommand"));
+
+// Joke command (programming jokes)
+hn.ev.on("messages.upsert", safeAsync(async (m) => {
+    const { messages } = m;
+    const ms = messages[0];
+    if (!ms.message) return;
+    const texte = ms.message.conversation || ms.message.extendedTextMessage?.text || "";
+    if (texte.trim().toLowerCase() === ".joke") {
+        try {
+            const res = await axios.get("https://v2.jokeapi.dev/joke/Programming?type=single");
+            const joke = res.data.joke || "No joke found!";
+            await hn.sendMessage(ms.key.remoteJid, { text: `😂 ${joke}` }, { quoted: ms });
+        } catch (err) {
+            await hn.sendMessage(ms.key.remoteJid, { text: "❌ Failed to fetch a joke." }, { quoted: ms });
+        }
+    }
+}, "JokeCommand"));
+
+// Meme command
+hn.ev.on("messages.upsert", safeAsync(async (m) => {
+    const { messages } = m;
+    const ms = messages[0];
+    if (!ms.message) return;
+    const texte = ms.message.conversation || ms.message.extendedTextMessage?.text || "";
+    if (texte.trim().toLowerCase() === ".meme") {
+        try {
+            const res = await axios.get("https://meme-api.com/gimme");
+            const meme = res.data;
+            await hn.sendMessage(ms.key.remoteJid, { image: { url: meme.url }, caption: meme.title }, { quoted: ms });
+        } catch (err) {
+            await hn.sendMessage(ms.key.remoteJid, { text: "❌ Failed to fetch a meme." }, { quoted: ms });
+        }
+    }
+}, "MemeCommand"));
+
+// AI Chat command (if OpenAI API key is set)
+hn.ev.on("messages.upsert", safeAsync(async (m) => {
+    const { messages } = m;
+    const ms = messages[0];
+    if (!ms.message) return;
+    const texte = ms.message.conversation || ms.message.extendedTextMessage?.text || "";
+    if (texte.trim().toLowerCase().startsWith(".gpt ")) {
+        const apiKey = process.env.OPENAI_API_KEY;
+        if (!apiKey) {
+            await hn.sendMessage(ms.key.remoteJid, { text: "❌ OpenAI API key not set." }, { quoted: ms });
+            return;
+        }
+        const prompt = texte.trim().slice(5);
+        try {
+            const response = await axios.post(
+                'https://api.openai.com/v1/chat/completions',
+                {
+                    model: "gpt-3.5-turbo",
+                    messages: [{ role: "user", content: prompt }],
+                    temperature: 0.7,
+                    max_tokens: 200
+                },
+                {
+                    headers: {
+                        'Authorization': `Bearer ${apiKey}`,
+                        'Content-Type': 'application/json'
+                    }
+                }
+            );
+            const answer = response.data.choices[0].message.content.trim();
+            await hn.sendMessage(ms.key.remoteJid, { text: `🤖 ${answer}` }, { quoted: ms });
+        } catch (err) {
+            await hn.sendMessage(ms.key.remoteJid, { text: "❌ AI error." }, { quoted: ms });
+        }
+    }
+}, "AIChatCommand"));
+
+// Auto-reply to greetings
+const greetings = ["hi", "hello", "hey", "yo", "sup", "holla", "bonjour", "salut", "hola"];
+hn.ev.on("messages.upsert", safeAsync(async (m) => {
+    const { messages } = m;
+    const ms = messages[0];
+    if (!ms.message) return;
+    const texte = (ms.message.conversation || ms.message.extendedTextMessage?.text || "").toLowerCase();
+    if (greetings.includes(texte.trim())) {
+        const replies = [
+            "👋 Hey there, coder!",
+            "😎 What's up, legend?",
+            "🦾 Ready to hack the matrix?",
+            "💻 Let's code something epic!",
+            "🔥 Welcome to the future!"
+        ];
+        await hn.sendMessage(ms.key.remoteJid, { text: pickRandom(replies) }, { quoted: ms });
+    }
+}, "GreetingAutoReply"));
+
+// Enhanced welcome/goodbye messages
+const welcomeMessages = [
+    "🎉 Welcome to the group, superstar!",
+    "🚀 Glad you joined us! Let's build something awesome.",
+    "👾 New hacker in the house!",
+    "🌟 Welcome! May your code always compile.",
+    "🦾 Welcome to the elite squad!"
+];
+const goodbyeMessages = [
+    "👋 Sad to see you go. Keep coding!",
+    "🦾 Another legend leaves the chat.",
+    "💻 Goodbye! May your bugs be few.",
+    "🚀 Farewell, coder!",
+    "🌟 Until next time, superstar!"
+];
+
+// Enhanced welcome with inspirational quote, group name, and mention
+hn.ev.on('group-participants.update', safeAsync(async (group) => {
+    let ppgroup;
+    try {
+        ppgroup = await hn.profilePictureUrl(group.id, 'image');
+    } catch {
+        ppgroup = '';
+    }
+    // Check if welcome is enabled for this group (if you have a function, replace this with the real check)
+    let welcomeEnabled = true;
+    if (typeof recupevents === 'function') {
+        try {
+            welcomeEnabled = (await recupevents(group.id, "welcome")) === 'on';
+        } catch {}
+    }
+    if (group.action == 'add' && welcomeEnabled) {
+        const quote = pickRandom(inspirationalQuotes);
+        const emoji = pickRandom(["🎉", "🚀", "👾", "🌟", "🦾", "💻", "✨", "😎", "🔥"]);
+        const groupName = group.id;
+        let groupMeta = null;
+        try {
+            groupMeta = await hn.groupMetadata(group.id);
+        } catch {}
+        const groupDisplayName = groupMeta ? groupMeta.subject : groupName;
+        let msg = `${emoji} *Welcome to ${groupDisplayName}!* ${emoji}\n`;
+        for (let membre of group.participants) {
+            msg += `Hey @${membre.split("@")[0]}, glad to have you here!\n`;
+        }
+        msg += `\n💡 *Inspiration:* ${quote}`;
+        msg += `\n\n*Read the group description and enjoy your stay!*`;
+        await hn.sendMessage(group.id, { image: { url: ppgroup }, caption: msg, mentions: group.participants });
+    } else if (group.action == 'remove') {
+        const msg = pickRandom(goodbyeMessages);
+        await hn.sendMessage(group.id, { text: msg, mentions: group.participants });
+    }
+}, "EnhancedWelcomeGoodbye"));
+
+// ========== END ENHANCEMENTS ========== //
