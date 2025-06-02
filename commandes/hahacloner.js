@@ -11,23 +11,6 @@ const readmore = more.repeat(4001)
 const GITHUB_REPO = 'Eliahhango/EliTechWiz-V4';
 const GITHUB_COMMITS_API = `https://api.github.com/repos/${GITHUB_REPO}/commits?per_page=1`;
 
-async function fetchLastUpdateInfo() {
-    try {
-        const res = await fetch(GITHUB_COMMITS_API);
-        if (!res.ok) throw new Error('GitHub API error');
-        const data = await res.json();
-        if (!data[0]) throw new Error('No commits found');
-        const commit = data[0];
-        const date = new Date(commit.commit.author.date);
-        const formattedDate = date.toLocaleString('en-GB', { year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' });
-        const message = commit.commit.message.split('\n')[0];
-        const url = commit.html_url;
-        return `🕒 Last Update: [${formattedDate}](${url})\n🔖 ${message}`;
-    } catch (e) {
-        return '🕒 Last Update: Could not fetch from GitHub.';
-    }
-}
-
 hango({ nomCom: "menu", categorie: "General" }, async (dest, hn, commandeOptions) => {
     let { ms, repondre ,prefixe,nomAuteurMessage,mybotpic} = commandeOptions;
     let { cm } = require(__dirname + "/../framework//hango");
@@ -46,26 +29,27 @@ hango({ nomCom: "menu", categorie: "General" }, async (dest, hn, commandeOptions
         coms[com.categorie].push(com.nomCom);
     });
 
-    moment.tz.setDefault('EAT');
+    moment.tz.setDefault('Africa/Dar_es_Salaam');
 
 // Créer une date et une heure en EAT
 const temps = moment().format('HH:mm:ss');
 const date = moment().format('DD/MM/YYYY');
 
-  let infoMsg =  `
-╭▱▰『 *𝗘𝗹𝗶𝗧𝗲𝗰𝗵𝗪𝗶𝘇-𝗩𝟰* 』▰▱✺
-║ ✺┌─────────────────┐
-║ ✺│    ⚡ BOT STATUS ⚡    
-║ ✺│ ✦ 𝙾𝚠𝚗𝚎𝚛 : ${s.OWNER_NAME}
-║ ✺│ ✦ 𝙿𝚛𝚎𝚏𝚒𝚡 : [ ${s.PREFIXE} ]
-║ ✺│ ✦ 𝙼𝚘𝚍𝚎 : ${mode}
-║ ✺│ ✦ 𝚃𝚒𝚖𝚎 : ${temps}
-║ ✺│ ✦ 𝚁𝚊𝚖 : ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB
-║ ✺│ ✦ 𝙳𝚊𝚝𝚎 : ${date}
-║ ✺│ ✦ 𝙲𝚛𝚎𝚊𝚝𝚘𝚛 : Eliah Hango
-║ ✺│ ✦ 𝙲𝚘𝚖𝚖𝚊𝚗𝚍𝚜 : ${cm.length}
-║ ✺└─────────────────┘
-╰▱▰▱『 *COMMANDS LIST* ▰▱✺\n`;
+  let infoMsg = `
+┌─[ SYSTEM INITIATED ]─┐
+│ 👾 EliTechWiz-V4 👾  │
+└──────────────────────┘
+┌─[ OPERATIONAL LOG ]─┐
+│ ✦ OWNER   : ${s.OWNER_NAME}
+│ ✦ PREFIX  : [ ${s.PREFIXE} ]
+│ ✦ MODE    : ${mode}
+│ ✦ TIME    : ${temps}
+│ ✦ RAM     : ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB
+│ ✦ DATE    : ${date}
+│ ✦ CREATOR : Eliah Hango
+│ ✦ COMMANDS: ${cm.length}
+└─────────────────────┘
+┌─[ COMMAND INDEX ]─┐`;
 
     // --- ENHANCED MENU FEATURES ---
     const userName = nomAuteurMessage || "User";
@@ -77,7 +61,6 @@ const date = moment().format('DD/MM/YYYY');
     }
     const uptime = runtime(process.uptime());
     const botVersion = "2.0.0";
-    const lastUpdateInfo = await fetchLastUpdateInfo();
     const tips = [
         "💡 Tip: Use !help to get detailed info about any command!",
         "💡 Did you know? You can invite me to your group for 24/7 fun!",
@@ -86,6 +69,7 @@ const date = moment().format('DD/MM/YYYY');
         "💡 Use !meme for a quick laugh!"
     ];
     const randomTip = tips[Math.floor(Math.random() * tips.length)];
+    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
     const categoryEmojis = {
         'General': '📁',
         'Fun': '🎲',
@@ -119,41 +103,39 @@ const date = moment().format('DD/MM/YYYY');
         '💬 "The best way to predict the future is to invent it." — Alan Kay',
         '💬 "If you can dream it, you can do it." — Walt Disney'
     ];
-    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
 
     const newsletterLink = "https://whatsapp.com/channel/0029VaeEYF0BvvsZpaTPfL2s";
 
     // --- MENU STYLE TEMPLATES ---
     function buildMenuStyle1() {
-        let out = `┏━━━━━━━━━━━[ 🤖 𝗘𝗹𝗶𝗧𝗲𝗰𝗵𝗪𝗶𝘇-𝗩𝟰 🤖 ]━━━━━━━━━━━┓\n`;
-        out += `┃ 👋 Hello, ${userName}!\n`;
-        out += `┃ 🛡️ Owner: ${s.OWNER_NAME}\n`;
-        out += `┃ 🏷️ Prefix: [ ${s.PREFIXE} ]\n`;
-        out += `┃ 🌐 Mode: ${mode}\n`;
-        out += `┃ ⏰ Time: ${temps}\n`;
-        out += `┃ 🗓️ Date: ${date}\n`;
-        out += `┃ 🧠 RAM: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB\n`;
-        out += `┃ ⏳ Uptime: ${uptime}\n`;
-        out += `┃ 🛠️ Commands: ${cm.length}\n`;
-        out += `┃ 🏷️ Version: v${botVersion}\n`;
-        out += `┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫\n`;
-        out += `┃         🗂️ COMMAND CATEGORIES\n`;
-        out += `┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫\n`;
+        let out = `┌─[ 🥷 𝗘𝗹𝗶𝗧𝗲𝗰𝗵𝗪𝗶𝘇-𝗩𝟰 INITIATED 🥷 ]─┐\n`;
+        out += `│\n`;
+        out += `│   User: ${userName}\n`;
+        out += `│   Owner: ${s.OWNER_NAME}\n`;
+        out += `│   Prefix: ${s.PREFIXE}\n`;
+        out += `│   Mode: ${mode}\n`;
+        out += `│   Time: ${temps} | Date: ${date}\n`;
+        out += `│   RAM: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB | Uptime: ${uptime}\n`;
+        out += `│   Commands: ${cm.length} | Version: v${botVersion}\n`;
+        out += `│\n`;
+        out += `│ 💡 ${randomTip}\n`;
+        out += `│\n`;
+        out += `│ 💬 ${randomQuote}\n`;
+        out += `│\n`;
+        out += `├─[ 📁 COMMAND MODULES 📁 ]─\n`;
         for (const cat in coms) {
             const emoji = categoryEmojis[cat] || '📁';
-            out += `\n${emoji} *${cat}* (${coms[cat].length})\n`;
+            out += `│\n${emoji} *${cat}* (${coms[cat].length})\n`;
             for (const cmd of coms[cat]) {
-                out += `   ├─ 🟢 ${s.PREFIXE}${cmd}\n`;
+                out += `✦ root@command: ${s.PREFIXE}${cmd}\n`;
             }
         }
-        out += `\n┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫\n`;
-        out += `┃ ${randomTip}\n`;
-        out += `┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫\n`;
-        out += `┃ ${randomQuote}\n`;
-        out += `┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫\n`;
-        out += `┃ 📢 Official Channel: ${newsletterLink}\n`;
-        out += `┃ 🔗 [Support](https://t.me/) | [Website](https://youtube.com/@eliahhango)\n`;
-        out += `┗━━━━━━━━━━━[ 🏆 CREDITS 🏆 ]━━━━━━━━━━━┛\n   Made by: Eliah Hango\n   ${lastUpdateInfo}\n`;
+        out += `│\n`;
+        out += `└─[ 🗂️ COMMAND CATEGORIES 🗂️ ]─\n`;
+        out += `│\n`;
+        out += `│ 📢 Official Channel: ${newsletterLink}\n`;
+        out += `│ 🔗 [Support](https://t.me/) | [Website](https://youtube.com/@eliahhango)\n`;
+        out += `└─[ 🏆 CREDITS 🏆 ]───────────────┘\n   Made by: Eliah Hango\n`;
         return out;
     }
     function buildMenuStyle2() {
@@ -165,26 +147,24 @@ const date = moment().format('DD/MM/YYYY');
         out += `┃ RAM: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB | Uptime: ${uptime}\n`;
         out += `┃ Version: v${botVersion} | Commands: ${cm.length}\n`;
         out += `╠═━━━─────༺༻────━══╣\n`;
+        out += `┃ ${randomTip}\n`;
+        out += `┃ ${randomQuote}\n`;
         for (const cat in coms) {
             const emoji = categoryEmojis[cat] || '✨';
             out += `\n${emoji} [${cat}] (${coms[cat].length})\n`;
             out += coms[cat].map(cmd => `   ➤ ${s.PREFIXE}${cmd}`).join("\n") + "\n";
         }
         out += `╠═━━━─────༺༻────━══╣\n`;
-        out += `┃ ${randomTip}\n`;
-        out += `╠═━━━─────༺༻────━══╣\n`;
-        out += `┃ ${randomQuote}\n`;
-        out += `╠═━━━─────༺༻────━══╣\n`;
         out += `┃ 📢 Official Channel: ${newsletterLink}\n`;
         out += `┃ Support: https://t.me/\n`;
         out += `┃ Website: https://youtube.com/@eliahhango\n`;
         out += `╚═━━━─────༺༻────━══╝\n`;
-        out += `   Made by: Eliah Hango | ${lastUpdateInfo}\n`;
         return out;
     }
     function buildMenuStyle3() {
         let out = `🖤━━━━━━━━━━━━━━━━━━━━━━🖤\n`;
-        out += `  𝗘𝗹𝗶𝗧𝗲𝗰𝗵𝗪𝗶𝘇-𝗩𝟰 ELITE MENU\n`;
+        out += `💡 ${randomTip}\n`;
+        out += `💬 ${randomQuote}\n`;
         out += `🖤━━━━━━━━━━━━━━━━━━━━━━🖤\n`;
         out += `👤: ${userName}   👑: ${s.OWNER_NAME}\n`;
         out += `⌚: ${temps}   📅: ${date}\n`;
@@ -197,18 +177,13 @@ const date = moment().format('DD/MM/YYYY');
             out += coms[cat].map(cmd => `   • ${s.PREFIXE}${cmd}`).join("\n") + "\n";
         }
         out += `🖤━━━━━━━━━━━━━━━━━━━━━━🖤\n`;
-        out += `💡 ${randomTip}\n`;
-        out += `🖤━━━━━━━━━━━━━━━━━━━━━━🖤\n`;
-        out += `💬 ${randomQuote}\n`;
-        out += `🖤━━━━━━━━━━━━━━━━━━━━━━🖤\n`;
         out += `📢 Official Channel: ${newsletterLink}\n`;
         out += `Support: https://t.me/ | Website: https://youtube.com/@eliahhango\n`;
         out += `🖤━━━━━━━━━━━━━━━━━━━━━━🖤\n`;
-        out += `Made by: Eliah Hango | ${lastUpdateInfo}\n`;
         return out;
     }
     function buildMenuStyle4() {
-        let out = `╭─❒ 𝗘𝗹𝗶𝗧𝗲𝗰𝗵𝗪𝗶𝘇-𝗩𝟰 COMMANDS ❒─╮\n`;
+        let out = `╭─❒ 𝗘𝗹��𝗧𝗲𝗰𝗵𝗪𝗶𝘇-𝗩𝟰 COMMANDS ❒─╮\n`;
         out += `│ User: ${userName}\n`;
         out += `│ Owner: ${s.OWNER_NAME}\n`;
         out += `│ Prefix: ${s.PREFIXE}\n`;
@@ -220,20 +195,17 @@ const date = moment().format('DD/MM/YYYY');
         out += `│ Version: v${botVersion}\n`;
         out += `│ Commands: ${cm.length}\n`;
         out += `╰─❒──────────────────────❒─╯\n`;
+        out += `💡 ${randomTip}\n`;
+        out += `💬 ${randomQuote}\n`;
         for (const cat in coms) {
             const emoji = categoryEmojis[cat] || '✨';
             out += `\n${emoji} ${cat} (${coms[cat].length})\n`;
             out += coms[cat].map(cmd => `   ▸ ${s.PREFIXE}${cmd}`).join("\n") + "\n";
         }
         out += `────────────────────────────\n`;
-        out += `💡 ${randomTip}\n`;
-        out += `────────────────────────────\n`;
-        out += `💬 ${randomQuote}\n`;
-        out += `────────────────────────────\n`;
         out += `📢 Official Channel: ${newsletterLink}\n`;
         out += `Support: https://t.me/ | Website: https://youtube.com/@eliahhango\n`;
         out += `────────────────────────────\n`;
-        out += `Made by: Eliah Hango | ${lastUpdateInfo}\n`;
         return out;
     }
     function buildMenuStyle5() {
@@ -244,20 +216,17 @@ const date = moment().format('DD/MM/YYYY');
         out += `RAM: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB | Uptime: ${uptime}\n`;
         out += `Version: v${botVersion} | Commands: ${cm.length}\n`;
         out += `★━━━━━━━━━━━━━━━━━━━━━━━━━━━★\n`;
+        out += `💡 ${randomTip}\n`;
+        out += `💬 ${randomQuote}\n`;
         for (const cat in coms) {
             const emoji = categoryEmojis[cat] || '✨';
             out += `\n${emoji} ${cat} (${coms[cat].length})\n`;
             out += coms[cat].map(cmd => `   ✦ ${s.PREFIXE}${cmd}`).join("\n") + "\n";
         }
         out += `★━━━━━━━━━━━━━━━━━━━━━━━━━━━★\n`;
-        out += `💡 ${randomTip}\n`;
-        out += `★━━━━━━━━━━━━━━━━━━━━━━━━━━━★\n`;
-        out += `💬 ${randomQuote}\n`;
-        out += `★━━━━━━━━━━━━━━━━━━━━━━━━━━━★\n`;
         out += `📢 Official Channel: ${newsletterLink}\n`;
         out += `Support: https://t.me/ | Website: https://youtube.com/@eliahhango\n`;
         out += `★━━━━━━━━━━━━━━━━━━━━━━━━━━━★\n`;
-        out += `Made by: Eliah Hango | ${lastUpdateInfo}\n`;
         return out;
     }
     // --- NEW MENU STYLES ---
@@ -271,26 +240,25 @@ const date = moment().format('DD/MM/YYYY');
         out += `🧠 RAM: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB   ⏳ Uptime: ${uptime}\n`;
         out += `🛠️ Commands: ${cm.length}   🏷️ Version: v${botVersion}\n`;
         out += `🟣═════════════════════════════🟣\n`;
+        out += `💡 ${randomTip}\n`;
+        out += `💬 ${randomQuote}\n`;
         for (const cat in coms) {
             const emoji = categoryEmojis[cat] || '🟣';
             out += `\n${emoji} ${cat} (${coms[cat].length})\n`;
             out += coms[cat].map(cmd => `   ➤ ${s.PREFIXE}${cmd}`).join("\n") + "\n";
         }
         out += `🟣═════════════════════════════🟣\n`;
-        out += `💡 ${randomTip}\n`;
-        out += `🟣═════════════════════════════🟣\n`;
-        out += `💬 ${randomQuote}\n`;
-        out += `🟣═════════════════════════════🟣\n`;
         out += `📢 Official Channel: ${newsletterLink}\n`;
         out += `Support: https://t.me/ | Website: https://youtube.com/@eliahhango\n`;
         out += `🟣═════════════════════════════🟣\n`;
-        out += `Made by: Eliah Hango | ${lastUpdateInfo}\n`;
         return out;
     }
     function buildMenuStyle7() {
         let out = `╔══✦═══✦══╗\n`;
         out += `   𝗘𝗹𝗶𝗧𝗲𝗰𝗵𝗪𝗶𝘇-𝗩𝟰 MENU\n`;
         out += `╚══✦═══✦══╝\n`;
+        out += `💡 ${randomTip}\n`;
+        out += `💬 ${randomQuote}\n`;
         out += `👤: ${userName} | 👑: ${s.OWNER_NAME}\n`;
         out += `🏷️: ${s.PREFIXE} | 🌐: ${mode}\n`;
         out += `⏰: ${temps} | 🗓️: ${date}\n`;
@@ -303,11 +271,8 @@ const date = moment().format('DD/MM/YYYY');
             out += coms[cat].map(cmd => `   ✦ ${s.PREFIXE}${cmd}`).join("\n") + "\n";
         }
         out += `╚══✦═══✦══╝\n`;
-        out += `💡 ${randomTip}\n`;
-        out += `💬 ${randomQuote}\n`;
         out += `📢 Official Channel: ${newsletterLink}\n`;
         out += `Support: https://t.me/ | Website: https://youtube.com/@eliahhango\n`;
-        out += `Made by: Eliah Hango | ${lastUpdateInfo}\n`;
         return out;
     }
     function buildMenuStyle8() {
@@ -320,18 +285,17 @@ const date = moment().format('DD/MM/YYYY');
         out += `🧠 ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB | ⏳ ${uptime}\n`;
         out += `🛠️ ${cm.length} | v${botVersion}\n`;
         out += `🛸───────────────🛸\n`;
+        out += `💡 ${randomTip}\n`;
+        out += `💬 ${randomQuote}\n`;
         for (const cat in coms) {
             const emoji = categoryEmojis[cat] || '👾';
             out += `\n${emoji} ${cat} (${coms[cat].length})\n`;
             out += coms[cat].map(cmd => `   👽 ${s.PREFIXE}${cmd}`).join("\n") + "\n";
         }
         out += `🛸───────────────🛸\n`;
-        out += `💡 ${randomTip}\n`;
-        out += `💬 ${randomQuote}\n`;
         out += `📢 Official Channel: ${newsletterLink}\n`;
         out += `Support: https://t.me/ | Website: https://youtube.com/@eliahhango\n`;
         out += `🛸───────────────🛸\n`;
-        out += `Made by: Eliah Hango | ${lastUpdateInfo}\n`;
         return out;
     }
     function buildMenuStyle9() {
@@ -344,18 +308,17 @@ const date = moment().format('DD/MM/YYYY');
         out += `🧠 ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB | ⏳ ${uptime}\n`;
         out += `🛠️ ${cm.length} | v${botVersion}\n`;
         out += `🌟━━━━━━━━━━━━━━━🌟\n`;
+        out += `💡 ${randomTip}\n`;
+        out += `💬 ${randomQuote}\n`;
         for (const cat in coms) {
             const emoji = categoryEmojis[cat] || '🌟';
             out += `\n${emoji} ${cat} (${coms[cat].length})\n`;
             out += coms[cat].map(cmd => `   ✨ ${s.PREFIXE}${cmd}`).join("\n") + "\n";
         }
         out += `🌟━━━━━━━━━━━━━━━🌟\n`;
-        out += `💡 ${randomTip}\n`;
-        out += `💬 ${randomQuote}\n`;
         out += `📢 Official Channel: ${newsletterLink}\n`;
         out += `Support: https://t.me/ | Website: https://youtube.com/@eliahhango\n`;
         out += `🌟━━━━━━━━━━━━━━━🌟\n`;
-        out += `Made by: Eliah Hango | ${lastUpdateInfo}\n`;
         return out;
     }
     function buildMenuStyle10() {
@@ -368,18 +331,17 @@ const date = moment().format('DD/MM/YYYY');
         out += `🧠 ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB | ⏳ ${uptime}\n`;
         out += `🛠️ ${cm.length} | v${botVersion}\n`;
         out += `🦾═══════════════════════🦾\n`;
+        out += `💡 ${randomTip}\n`;
+        out += `💬 ${randomQuote}\n`;
         for (const cat in coms) {
             const emoji = categoryEmojis[cat] || '🦾';
             out += `\n${emoji} ${cat} (${coms[cat].length})\n`;
             out += coms[cat].map(cmd => `   🤖 ${s.PREFIXE}${cmd}`).join("\n") + "\n";
         }
         out += `🦾═══════════════════════🦾\n`;
-        out += `💡 ${randomTip}\n`;
-        out += `💬 ${randomQuote}\n`;
         out += `📢 Official Channel: ${newsletterLink}\n`;
         out += `Support: https://t.me/ | Website: https://youtube.com/@eliahhango\n`;
         out += `🦾═══════════════════════🦾\n`;
-        out += `Made by: Eliah Hango | ${lastUpdateInfo}\n`;
         return out;
     }
     // Pick a random style
@@ -394,12 +356,6 @@ const date = moment().format('DD/MM/YYYY');
    const newsletterThumbnail = 'https://files.catbox.moe/vxxv26.jpeg';
    const newsletterSourceUrl = 'https://whatsapp.com/channel/0029VaeEYF0BvvsZpaTPfL2s';
    const newsletterContextInfo = {
-       isForwarded: true,
-       forwardedNewsletterMessageInfo: {
-           newsletterJid: newsletterJid,
-           newsletterName: newsletterName,
-           serverMessageId: 143,
-       },
        forwardingScore: 999,
        externalAdReply: {
            title: newsletterName,
@@ -424,7 +380,6 @@ const date = moment().format('DD/MM/YYYY');
 else if (lien.match(/\.(jpeg|png|jpg)$/i)) {
     try {
         hn.sendMessage(dest, { image: { url: lien }, caption: finalMenu, footer: "*Eliah Tech*", contextInfo: newsletterContextInfo }, { quoted: ms });
-        hn.sendMessage(dest, { image: { url: lien }, caption: finalMenu, footer: "*Eliah Tech*" }, { quoted: ms });
     }
     catch (e) {
         console.log("🥵🥵 Menu erreur " + e);
@@ -452,7 +407,6 @@ hango({ nomCom: "menutest", categorie: "General" }, async (dest, hn, commandeOpt
     }
     const uptime = runtime(process.uptime());
     const botVersion = "2.0.0";
-    const lastUpdateInfo = await fetchLastUpdateInfo();
     const tips = [
         "💡 Tip: Use !help to get detailed info about any command!",
         "💡 Did you know? You can invite me to your group for 24/7 fun!",
@@ -461,6 +415,7 @@ hango({ nomCom: "menutest", categorie: "General" }, async (dest, hn, commandeOpt
         "💡 Use !meme for a quick laugh!"
     ];
     const randomTip = tips[Math.floor(Math.random() * tips.length)];
+    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
     // Use the same coms, cm, etc. as the main menu
     // Use the same categoryEmojis and menu style functions
     const menuStyles = [buildMenuStyle1, buildMenuStyle2, buildMenuStyle3, buildMenuStyle4, buildMenuStyle5, buildMenuStyle6, buildMenuStyle7, buildMenuStyle8, buildMenuStyle9, buildMenuStyle10];
