@@ -69,22 +69,7 @@ const date = moment().format('DD/MM/YYYY');
         "💡 Use !meme for a quick laugh!"
     ];
     const randomTip = tips[Math.floor(Math.random() * tips.length)];
-    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-    const categoryEmojis = {
-        'General': '📁',
-        'Fun': '🎲',
-        'Admin': '🛡️',
-        'Utility': '🛠️',
-        'Music': '🎵',
-        'Group': '👥',
-        'Owner': '👑',
-        'Downloads': '⬇️',
-        'Anime': '🍥',
-        'Games': '🎮',
-        'Search': '🔎',
-        'Other': '✨'
-    };
-
+    
     // Inspirational/hacker/tech quotes
     const quotes = [
         '💬 "The only way to do great work is to love what you do." — Steve Jobs',
@@ -103,6 +88,22 @@ const date = moment().format('DD/MM/YYYY');
         '💬 "The best way to predict the future is to invent it." — Alan Kay',
         '💬 "If you can dream it, you can do it." — Walt Disney'
     ];
+
+    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    const categoryEmojis = {
+        'General': '📁',
+        'Fun': '🎲',
+        'Admin': '🛡️',
+        'Utility': '🛠️',
+        'Music': '🎵',
+        'Group': '👥',
+        'Owner': '👑',
+        'Downloads': '⬇️',
+        'Anime': '🍥',
+        'Games': '🎮',
+        'Search': '🔎',
+        'Other': '✨'
+    };
 
     const newsletterLink = "https://whatsapp.com/channel/0029VaeEYF0BvvsZpaTPfL2s";
 
@@ -183,7 +184,7 @@ const date = moment().format('DD/MM/YYYY');
         return out;
     }
     function buildMenuStyle4() {
-        let out = `╭─❒ 𝗘𝗹��𝗧𝗲𝗰𝗵𝗪𝗶𝘇-𝗩𝟰 COMMANDS ❒─╮\n`;
+        let out = `╭─❒ 𝗘𝗹𝗶𝗧𝗲𝗰𝗵𝗪𝗶𝘇-𝗩𝟰 COMMANDS ❒─╮\n`;
         out += `│ User: ${userName}\n`;
         out += `│ Owner: ${s.OWNER_NAME}\n`;
         out += `│ Prefix: ${s.PREFIXE}\n`;
@@ -339,89 +340,30 @@ const date = moment().format('DD/MM/YYYY');
             out += coms[cat].map(cmd => `   🤖 ${s.PREFIXE}${cmd}`).join("\n") + "\n";
         }
         out += `🦾═══════════════════════🦾\n`;
-        out += `📢 Official Channel: ${newsletterLink}\n`;
-        out += `Support: https://t.me/ | Website: https://youtube.com/@eliahhango\n`;
-        out += `🦾═══════════════════════🦾\n`;
         return out;
     }
-    // Pick a random style
-    const menuStyles = [buildMenuStyle1, buildMenuStyle2, buildMenuStyle3, buildMenuStyle4, buildMenuStyle5, buildMenuStyle6, buildMenuStyle7, buildMenuStyle8, buildMenuStyle9, buildMenuStyle10];
-    const finalMenu = menuStyles[Math.floor(Math.random() * menuStyles.length)]();
 
-   var lien = mybotpic();
+    // --- MENU SELECTION LOGIC ---
+    const args = commandeOptions.arg;
+    let selectedMenu = '';
+    const menuFunctions = {
+        '1': buildMenuStyle1,
+        '2': buildMenuStyle2,
+        '3': buildMenuStyle3,
+        '4': buildMenuStyle4,
+        '5': buildMenuStyle5,
+        '6': buildMenuStyle6,
+        '7': buildMenuStyle7,
+        '8': buildMenuStyle8,
+        '9': buildMenuStyle9,
+        '10': buildMenuStyle10,
+    };
 
-   // WhatsApp Channel Newsletter Info
-   const newsletterJid = '120363222395675670@newsletter';
-   const newsletterName = 'EliTechWiz';
-   const newsletterThumbnail = 'https://files.catbox.moe/vxxv26.jpeg';
-   const newsletterSourceUrl = 'https://whatsapp.com/channel/0029VaeEYF0BvvsZpaTPfL2s';
-   const newsletterContextInfo = {
-       forwardingScore: 999,
-       externalAdReply: {
-           title: newsletterName,
-           body: 'fast via',
-           thumbnailUrl: newsletterThumbnail,
-           sourceUrl: newsletterSourceUrl,
-           mediaType: 1,
-           renderLargerThumbnail: true
-       }
-   };
+    if (args && args[0] && menuFunctions[args[0]]) {
+        selectedMenu = menuFunctions[args[0]]();
+    } else {
+        selectedMenu = buildMenuStyle1(); // Default menu style
+    }
 
-   if (lien.match(/\.(mp4|gif)$/i)) {
-    try {
-        hn.sendMessage(dest, { video: { url: lien }, caption: finalMenu, footer: "Je suis *hango-MD*, développé par Djalega++", gifPlayback: true, contextInfo: newsletterContextInfo }, { quoted: ms });
-    }
-    catch (e) {
-        console.log("🥵🥵 Menu erreur " + e);
-        repondre("🥵🥵 Menu erreur " + e);
-    }
-} 
-// Vérification pour .jpeg ou .png
-else if (lien.match(/\.(jpeg|png|jpg)$/i)) {
-    try {
-        hn.sendMessage(dest, { image: { url: lien }, caption: finalMenu, footer: "*Eliah Tech*", contextInfo: newsletterContextInfo }, { quoted: ms });
-    }
-    catch (e) {
-        console.log("🥵🥵 Menu erreur " + e);
-        repondre("🥵🥵 Menu erreur " + e);
-    }
-} 
-else {
-    
-    repondre(finalMenu);
-    
-}
-
-});
-
-// Add a test command to preview all menu styles at once
-hango({ nomCom: "menutest", categorie: "General" }, async (dest, hn, commandeOptions) => {
-    let { ms, repondre, nomAuteurMessage, mybotpic } = commandeOptions;
-    // Use the same context as the main menu
-    const userName = nomAuteurMessage || "User";
-    function runtime(seconds) {
-        const hours = Math.floor(seconds / 3600);
-        const minutes = Math.floor((seconds % 3600) / 60);
-        const secondsLeft = Math.floor(seconds % 60);
-        return `${hours}h ${minutes}m ${secondsLeft}s`;
-    }
-    const uptime = runtime(process.uptime());
-    const botVersion = "2.0.0";
-    const tips = [
-        "💡 Tip: Use !help to get detailed info about any command!",
-        "💡 Did you know? You can invite me to your group for 24/7 fun!",
-        "💡 Pro tip: Use !sticker to turn any image into a sticker!",
-        "💡 Stay safe! Never share your OTP with anyone.",
-        "💡 Use !meme for a quick laugh!"
-    ];
-    const randomTip = tips[Math.floor(Math.random() * tips.length)];
-    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-    // Use the same coms, cm, etc. as the main menu
-    // Use the same categoryEmojis and menu style functions
-    const menuStyles = [buildMenuStyle1, buildMenuStyle2, buildMenuStyle3, buildMenuStyle4, buildMenuStyle5, buildMenuStyle6, buildMenuStyle7, buildMenuStyle8, buildMenuStyle9, buildMenuStyle10];
-    for (let i = 0; i < menuStyles.length; i++) {
-        const previewMenu = menuStyles[i]();
-        await hn.sendMessage(dest, { text: `*Menu Style ${i+1}:*\n\n` + previewMenu }, { quoted: ms });
-    }
-    repondre("✅ All menu styles sent for preview!");
+    await repondre(selectedMenu);
 });
