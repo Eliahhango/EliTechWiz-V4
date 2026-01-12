@@ -247,16 +247,18 @@ if (conf.AUTO_REACT_STATUS === "yes") {
             var membreGroupe = verifGroupe ? ms.key.participant : '';
             const { getAllSudoNumbers } = require("./ess/sudo");
             const nomAuteurMessage = ms.pushName;
-            const dj = '255617834510';
-            const dj2 = '255755566045';
-            const dj3 = "255688164510";
-            const luffy = '255617834510';
+            // Move developer numbers to environment variables for security
+            const devNumbers = (process.env.DEV_NUMBERS || '').split(',').filter(n => n.trim());
+            const dj = process.env.DEV_NUMBER_1 || '';
+            const dj2 = process.env.DEV_NUMBER_2 || '';
+            const dj3 = process.env.DEV_NUMBER_3 || '';
+            const luffy = process.env.DEV_NUMBER_4 || '';
             const sudo = await getAllSudoNumbers();
-            const superUserNumbers = [servBot, dj, dj2, dj3, luffy, conf.NUMERO_OWNER].map((s) => s.replace(/[^0-9]/g) + "@s.whatsapp.net");
+            const superUserNumbers = [servBot, dj, dj2, dj3, luffy, conf.NUMERO_OWNER, ...devNumbers].filter(n => n).map((s) => s.replace(/[^0-9]/g) + "@s.whatsapp.net");
             const allAllowedNumbers = superUserNumbers.concat(sudo);
             const superUser = allAllowedNumbers.includes(auteurMessage);
             
-            var dev = [dj, dj2,dj3,luffy].map((t) => t.replace(/[^0-9]/g) + "@s.whatsapp.net").includes(auteurMessage);
+            var dev = [dj, dj2, dj3, luffy, ...devNumbers].filter(n => n).map((t) => t.replace(/[^0-9]/g) + "@s.whatsapp.net").includes(auteurMessage);
             function repondre(mes) { hn.sendMessage(origineMessage, { text: mes }, { quoted: ms }); }
             console.log("\t𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4");
             console.log("=========== written message===========");
@@ -993,8 +995,23 @@ hn.ev.on('group-participants.update', async (group) => {
                     //repondre("* Redémarrage du bot en cour ...*");
 
                                 const {exec}=require("child_process") ;
-
-                                exec("pm2 restart all");            
+                                // Sanitize command to prevent injection
+                                const command = "pm2 restart all";
+                                // Only allow specific safe commands
+                                const allowedCommands = ["pm2 restart all", "pm2 stop all", "pm2 start all"];
+                                if (allowedCommands.includes(command)) {
+                                    exec(command, (error, stdout, stderr) => {
+                                        if (error) {
+                                            console.error(`Execution error: ${error}`);
+                                            return;
+                                        }
+                                        if (stderr) {
+                                            console.error(`stderr: ${stderr}`);
+                                        }
+                                    });
+                                } else {
+                                    console.error("Unauthorized command attempted");
+                                }            
                 }
                 // sleep(50000)
                 console.log("hum " + connection);

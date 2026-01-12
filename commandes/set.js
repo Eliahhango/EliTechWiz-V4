@@ -40,7 +40,7 @@ module.exports = { session: process.env.SESSION_ID || '',
                   AUTO_TAG_STATUS : process.env.AUTO_TAG_STATUS || 'yes',
     DATABASE_URL,
     DATABASE: DATABASE_URL === databasePath
-        ? "postgresql://postgres:bKlIqoOUWFIHOAhKxRWQtGfKfhGKgmRX@viaduct.proxy.rlwy.net:47738/railway" : "postgresql://postgres:bKlIqoOUWFIHOAhKxRWQtGfKfhGKgmRX@viaduct.proxy.rlwy.net:47738/railway",
+        ? (process.env.DATABASE_URL || databasePath) : (process.env.DATABASE_URL || DATABASE_URL),
    
 };
 let fichier = require.resolve(__filename);

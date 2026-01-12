@@ -87,14 +87,21 @@ const {
 	prefix,
 	bot_
 	} = require('../lib')
-const Levels = require("discord-xp");
+// Levels already declared above, no need to redeclare
 var isLvl;
 async function levelss() {
     try{ 
-       if(isMongodb)(
-		isLvl = await Levels.setURL(mongodb || "mongodb://uwrr2obvrb4kbwnrvimy:rbgieh8nfk7EylXCh2D@byg4ii8uzy5rro8bcdfu-mongodb.services.clever-cloud.com:2008/byg4ii8uzy5rro8bcdfu")
-        )
-    }catch(e){}
+       if(global.isMongodb) {
+		const mongodbUrl = process.env.MONGODB_URL || process.env.DATABASE_URL;
+		if (!mongodbUrl) {
+			console.error("MongoDB URL not configured. Please set MONGODB_URL or DATABASE_URL environment variable.");
+			return;
+		}
+		isLvl = await Levels.setURL(mongodbUrl);
+        }
+    }catch(e){
+		console.error("Error initializing MongoDB connection:", e);
+	}
 } 
 levelss()
 

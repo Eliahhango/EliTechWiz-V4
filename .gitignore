@@ -1,6 +1,45 @@
+# Authentication and session files
 /auth
+/auth/**
 /set.env
-/package-lock.json
+*.env
+!exemple_de_set.env
+
+# Dependencies
 /node_modules
+/package-lock.json
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs and temporary files
+*.log
 /store.json
 /audio.mp3
+*.tmp
+*.temp
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
+
+# Build files
+/dist
+/build
+*.bak
+
+# Sensitive data
+creds*.json
+*.key
+*.pem
+*.cert
