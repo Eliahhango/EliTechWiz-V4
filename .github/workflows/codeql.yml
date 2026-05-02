@@ -26,44 +26,29 @@ jobs:
         run: |
           set -euo pipefail
           shopt -s globstar nullglob
-
-          has_any() {
-            local pattern
-            for pattern in "$@"; do
-              compgen -G "$pattern" >/dev/null && return 0
-            done
-            return 1
-          }
-
+          has_any() { for pattern in "$@"; do compgen -G "$pattern" >/dev/null && return 0; done; return 1; }
           langs=()
-          if has_any '**/*.js' '**/*.jsx' '**/*.mjs' '**/*.cjs' '**/*.ts' '**/*.tsx'; then langs+=("javascript-typescript"); fi
-          if has_any '**/*.py'; then langs+=("python"); fi
-          if has_any '**/*.go'; then langs+=("go"); fi
-          if has_any '**/*.java' '**/*.kt' '**/*.kts'; then langs+=("java-kotlin"); fi
-          if has_any '**/*.c' '**/*.h' '**/*.cpp' '**/*.cc' '**/*.cxx' '**/*.hpp'; then langs+=("c-cpp"); fi
-          if has_any '**/*.cs'; then langs+=("csharp"); fi
-          if has_any '**/*.rb'; then langs+=("ruby"); fi
-          if has_any '**/*.swift'; then langs+=("swift"); fi
-          if has_any '**/*.rs'; then langs+=("rust"); fi
-
+          has_any '**/*.js' '**/*.jsx' '**/*.mjs' '**/*.cjs' '**/*.ts' '**/*.tsx' && langs+=("javascript-typescript") || true
+          has_any '**/*.py' && langs+=("python") || true
+          has_any '**/*.go' && langs+=("go") || true
+          has_any '**/*.java' '**/*.kt' '**/*.kts' && langs+=("java-kotlin") || true
+          has_any '**/*.c' '**/*.h' '**/*.cpp' '**/*.cc' '**/*.cxx' '**/*.hpp' && langs+=("c-cpp") || true
+          has_any '**/*.cs' && langs+=("csharp") || true
+          has_any '**/*.rb' && langs+=("ruby") || true
+          has_any '**/*.swift' && langs+=("swift") || true
+          has_any '**/*.rs' && langs+=("rust") || true
           if [ ${#langs[@]} -eq 0 ]; then
             echo "enabled=false" >> "$GITHUB_OUTPUT"
             echo "languages=[]" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-
-          json="["
-          for i in "${!langs[@]}"; do
-            [ "$i" -gt 0 ] && json+=","; json+=""${langs[$i]}""
-          done
-          json+="]"
-
+          json="["; for i in "${!langs[@]}"; do [ "$i" -gt 0 ] && json+=","; json+=""${langs[$i]}""; done; json+="]"
           echo "enabled=true" >> "$GITHUB_OUTPUT"
           echo "languages=$json" >> "$GITHUB_OUTPUT"
 
   analyze:
     needs: detect-languages
-    if: needs.detect-languages.outputs.enabled == 'true'
+    if: needs.detect-languages.outputs.enabled == 'true' && github.event.repository.private == false
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
