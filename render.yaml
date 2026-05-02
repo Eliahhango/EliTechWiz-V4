@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: elitechwiz-v4
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    plan: free
+    envVars:
+      - key: NODE_VERSION
+        value: 20.x
+      - key: NODE_ENV
+        value: production
+    healthCheckPath: / 
