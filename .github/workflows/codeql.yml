@@ -36,46 +36,25 @@ jobs:
           }
 
           langs=()
-
-          if has_any '**/*.js' '**/*.jsx' '**/*.mjs' '**/*.cjs' '**/*.ts' '**/*.tsx'; then
-            langs+=("javascript-typescript")
-          fi
-          if has_any '**/*.py'; then
-            langs+=("python")
-          fi
-          if has_any '**/*.go'; then
-            langs+=("go")
-          fi
-          if has_any '**/*.java' '**/*.kt' '**/*.kts'; then
-            langs+=("java-kotlin")
-          fi
-          if has_any '**/*.c' '**/*.h' '**/*.cpp' '**/*.cc' '**/*.cxx' '**/*.hpp'; then
-            langs+=("c-cpp")
-          fi
-          if has_any '**/*.cs'; then
-            langs+=("csharp")
-          fi
-          if has_any '**/*.rb'; then
-            langs+=("ruby")
-          fi
-          if has_any '**/*.swift'; then
-            langs+=("swift")
-          fi
-          if has_any '**/*.rs'; then
-            langs+=("rust")
-          fi
+          if has_any '**/*.js' '**/*.jsx' '**/*.mjs' '**/*.cjs' '**/*.ts' '**/*.tsx'; then langs+=("javascript-typescript"); fi
+          if has_any '**/*.py'; then langs+=("python"); fi
+          if has_any '**/*.go'; then langs+=("go"); fi
+          if has_any '**/*.java' '**/*.kt' '**/*.kts'; then langs+=("java-kotlin"); fi
+          if has_any '**/*.c' '**/*.h' '**/*.cpp' '**/*.cc' '**/*.cxx' '**/*.hpp'; then langs+=("c-cpp"); fi
+          if has_any '**/*.cs'; then langs+=("csharp"); fi
+          if has_any '**/*.rb'; then langs+=("ruby"); fi
+          if has_any '**/*.swift'; then langs+=("swift"); fi
+          if has_any '**/*.rs'; then langs+=("rust"); fi
 
           if [ ${#langs[@]} -eq 0 ]; then
             echo "enabled=false" >> "$GITHUB_OUTPUT"
             echo "languages=[]" >> "$GITHUB_OUTPUT"
-            echo "No supported CodeQL languages detected."
             exit 0
           fi
 
           json="["
           for i in "${!langs[@]}"; do
-            [ "$i" -gt 0 ] && json+=","
-            json+=""${langs[$i]}""
+            [ "$i" -gt 0 ] && json+=","; json+=""${langs[$i]}""
           done
           json+="]"
 
