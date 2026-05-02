@@ -24,7 +24,7 @@
     "@adiwajshing/keyed-db": "^0.2.4",
     "@brandond/findthelyrics": "^2.0.5",
     "@green-code/music-track-data": "^2.0.3",
-    "@shineiichijo/marika": "^2.0.6",
+    "@shineiichijo/marika": "^3.0.1",
     "@vitalets/google-translate-api": "^9.2.0",
     "@xct007/tiktok-scraper": "^1.0.2",  
     "@hapi/boom": "^10.0.1",
