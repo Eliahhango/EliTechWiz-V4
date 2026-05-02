@@ -1,4 +1,5 @@
 name: "CodeQL"
+
 on:
   push:
     branches: ["main", "master"]
@@ -6,16 +7,89 @@ on:
     branches: ["main", "master"]
   schedule:
     - cron: "30 2 * * 1"
+
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+
 jobs:
-  analyze:
+  detect-languages:
     runs-on: ubuntu-latest
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
+    outputs:
+      languages: ${{ steps.detect.outputs.languages }}
+      enabled: ${{ steps.detect.outputs.enabled }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: detect
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s globstar nullglob
+
+          has_any() {
+            local pattern
+            for pattern in "$@"; do
+              compgen -G "$pattern" >/dev/null && return 0
+            done
+            return 1
+          }
+
+          langs=()
+
+          if has_any '**/*.js' '**/*.jsx' '**/*.mjs' '**/*.cjs' '**/*.ts' '**/*.tsx'; then
+            langs+=("javascript-typescript")
+          fi
+          if has_any '**/*.py'; then
+            langs+=("python")
+          fi
+          if has_any '**/*.go'; then
+            langs+=("go")
+          fi
+          if has_any '**/*.java' '**/*.kt' '**/*.kts'; then
+            langs+=("java-kotlin")
+          fi
+          if has_any '**/*.c' '**/*.h' '**/*.cpp' '**/*.cc' '**/*.cxx' '**/*.hpp'; then
+            langs+=("c-cpp")
+          fi
+          if has_any '**/*.cs'; then
+            langs+=("csharp")
+          fi
+          if has_any '**/*.rb'; then
+            langs+=("ruby")
+          fi
+          if has_any '**/*.swift'; then
+            langs+=("swift")
+          fi
+          if has_any '**/*.rs'; then
+            langs+=("rust")
+          fi
+
+          if [ ${#langs[@]} -eq 0 ]; then
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "languages=[]" >> "$GITHUB_OUTPUT"
+            echo "No supported CodeQL languages detected."
+            exit 0
+          fi
+
+          json="["
+          for i in "${!langs[@]}"; do
+            [ "$i" -gt 0 ] && json+=","
+            json+=""${langs[$i]}""
+          done
+          json+="]"
+
+          echo "enabled=true" >> "$GITHUB_OUTPUT"
+          echo "languages=$json" >> "$GITHUB_OUTPUT"
+
+  analyze:
+    needs: detect-languages
+    if: needs.detect-languages.outputs.enabled == 'true'
+    runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        language: ["javascript-typescript"]
+        language: ${{ fromJSON(needs.detect-languages.outputs.languages) }}
     steps:
       - uses: actions/checkout@v4
       - uses: github/codeql-action/init@v3
