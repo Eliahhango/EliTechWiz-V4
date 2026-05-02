@@ -94,7 +94,7 @@
     "link-preview-js": "^3.0.0",
     "lodash": "^4.17.21",
     "lowdb": "^3.0.0", 
-    "link-preview-js": "^3.0.4",
+    "link-preview-js": "^4.0.1",
     "libphonenumber": "^0.0.10",
     "lyrics-finder": "^21.7.0",
     "megajs": "^1.1.4",
