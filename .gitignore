@@ -43,3 +43,4 @@ creds*.json
 *.key
 *.pem
 *.cert
+.env
