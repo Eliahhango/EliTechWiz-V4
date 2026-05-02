@@ -103,7 +103,7 @@
     "mathjs": "^11.3.0",
     "moment-timezone": "^0.5.43",
     "mongoose": "^7.4.1",
-    "mongodb": "^6.12.0",
+    "mongodb": "^7.2.0",
     "mumaker": "^2.0.0",
     "node-cache": "^5.1.2", 
     "node-cron": "^3.0.3",
