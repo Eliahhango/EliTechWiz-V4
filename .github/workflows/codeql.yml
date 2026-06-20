@@ -20,7 +20,7 @@ jobs:
       languages: ${{ steps.detect.outputs.languages }}
       enabled: ${{ steps.detect.outputs.enabled }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - id: detect
         shell: bash
         run: |
@@ -60,7 +60,7 @@ jobs:
       matrix:
         language: ${{ fromJSON(needs.detect-languages.outputs.languages) }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: github/codeql-action/init@v3
         with:
           languages: ${{ matrix.language }}
