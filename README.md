@@ -41,7 +41,7 @@
 </p>
 
 <!-- Animated Stats Bar -->
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=YourUsername&theme=react-dark&bg_color=0a192f&color=00FFFF&line=00FFFF&point=FFFFFF&area=true&hide_border=true" width="100%"/>
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=Eliahhango&theme=react-dark&bg_color=0a192f&color=00FFFF&line=00FFFF&point=FFFFFF&area=true&hide_border=true" width="100%"/>
 
 <br>
 
@@ -176,10 +176,10 @@ MODE          = "public" // or "private"
 
 [![Telegram](https://img.shields.io/badge/Telegram-00FFFF?style=for-the-badge&logo=telegram&logoColor=white&labelColor=0a192f)](https://t.me/YourChannel)
 [![WhatsApp](https://img.shields.io/badge/WhatsApp-00FFFF?style=for-the-badge&logo=whatsapp&logoColor=white&labelColor=0a192f)](https://wa.me/YourNumber)
-[![GitHub](https://img.shields.io/badge/GitHub-00FFFF?style=for-the-badge&logo=github&logoColor=white&labelColor=0a192f)](https://github.com/YourUsername)
+[![GitHub](https://img.shields.io/badge/GitHub-00FFFF?style=for-the-badge&logo=github&logoColor=white&labelColor=0a192f)](https://github.com/Eliahhango)
 [![Discord](https://img.shields.io/badge/Discord-00FFFF?style=for-the-badge&logo=discord&logoColor=white&labelColor=0a192f)](https://discord.gg/YourServer)
 
-<img src="https://komarev.com/ghpvc/?username=YourUsername&label=PROFILE+VIEWS&color=00FFFF&style=for-the-badge&labelColor=0a192f" alt="Profile Views"/>
+<img src="https://komarev.com/ghpvc/?username=Eliahhango&label=PROFILE+VIEWS&color=00FFFF&style=for-the-badge&labelColor=0a192f" alt="Profile Views"/>
 
 </div>
 
@@ -189,8 +189,8 @@ MODE          = "public" // or "private"
 
 ### ⭐ **STAR THIS REPO TO UNLOCK MAXIMUM POWER** ⭐
 
-<img src="https://github-readme-stats.vercel.app/api?username=YourUsername&show_icons=true&theme=react&bg_color=0a192f&title_color=00FFFF&icon_color=00FFFF&text_color=FFFFFF&border_color=00FFFF&border_radius=10" width="48%"/>
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=YourUsername&theme=react&background=0a192f&ring=00FFFF&fire=00FFFF&currStreakLabel=00FFFF&border=00FFFF&border_radius=10" width="48%"/>
+<img src="https://github-readme-stats.vercel.app/api?username=Eliahhango&show_icons=true&theme=react&bg_color=0a192f&title_color=00FFFF&icon_color=00FFFF&text_color=FFFFFF&border_color=00FFFF&border_radius=10" width="48%"/>
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=Eliahhango&theme=react&background=0a192f&ring=00FFFF&fire=00FFFF&currStreakLabel=00FFFF&border=00FFFF&border_radius=10" width="48%"/>
 
 </div>
 

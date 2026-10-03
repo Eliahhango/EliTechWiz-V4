@@ -1,3 +1,6 @@
+const { hango } = require('../framework/hango');
+const hn = require('../lib/live');
+
 // Maps to store anti-spam settings and user message history
 const antiSpamEnabled = new Map();
 const userMessageHistory = new Map();

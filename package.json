@@ -6,7 +6,7 @@
   "scripts": {
     "test": "node eliah.js",
     "s": "node eliah.js",
-    "toshtech": "pm2 start eliah.js --attach",
+    "pm2": "pm2 start eliah.js --attach",
     "c": "tsc"
   },
   "keywords": [
@@ -17,7 +17,7 @@
     "whatsapp-bot",
     " 𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4-boy"
   ],
-  "author": "Tosh205",
+  "author": "Eliah Hango",
   "license": "ISC",
   "dependencies": {
     "@adiwajshing/keyed-db": "^0.2.4",

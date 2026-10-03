@@ -1,6 +1,6 @@
 const util = require('util');
 const fs = require('fs-extra');
-const { hango } = require(__dirname + "/../framework/hango");
+const { hango, cm } = require(__dirname + "/../framework/hango");
 const { format } = require(__dirname + "/../framework/mesfonctions");
 const os = require("os");
 const moment = require("moment-timezone");
@@ -15,7 +15,6 @@ hango({ nomCom: "menu2", categorie: "General" }, async (dest, hn, commandeOption
     if ((s.MODE).toLocaleLowerCase() != "yes") {
         mode = "private";
     }
-    });
 
 
     
@@ -110,3 +109,4 @@ else {
         repondre("🥵🥵 Menu erreur " + e.message);
     }
 }
+});

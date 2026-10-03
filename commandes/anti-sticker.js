@@ -1,4 +1,5 @@
 const { hango } = require("../framework/hango");
+const hn = require("../lib/live");
 const fs = require('fs');
 
 let antiStickerDeleteActive = false; // Variable to store the state of the anti-sticker-delete command

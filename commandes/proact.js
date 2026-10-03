@@ -1,4 +1,4 @@
-const { adams } = require('../Ibrahim/adams');
+const { hango: adams } = require('../framework/hango');
 const axios = require("axios")
 let { Sticker, createSticker, StickerTypes } = require('wa-sticker-formatter');
 const {isUserBanned , addUserToBanList , removeUserFromBanList} = require("../ess/banUser");

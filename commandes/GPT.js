@@ -1,3 +1,4 @@
+const { hango } = require('../framework/hango');
 hango({
   nomCom: "elitechwiz",
   categorie: "Ai",

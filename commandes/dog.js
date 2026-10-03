@@ -1,12 +1,12 @@
 const {
    hango
-} = require('../framework/hango");
+} = require('../framework/hango');
 
 hango({
    nomCom: "dog",
    categorie: "fun",
    reaction: "🙄",
-   desc: "Send videos of randome dogs!
+   desc: "Send videos of randome dogs!",
    filename: __filename,
 },
    async (dest, hn, commandeOptions) => {

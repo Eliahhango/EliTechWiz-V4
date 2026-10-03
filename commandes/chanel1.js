@@ -12,9 +12,6 @@ hango({ nomCom: "channel", reaction: "😌", nomFichier: __filename }, async (de
 });
 
 console.log("mon test");
-
-});
-console.log("mon test");
 /*module.exports.commande = () => {
   var nomCom = ["test","t"]
   var reaction="☺️"

@@ -43,9 +43,6 @@ fetch(`http://api.brainshop.ai/get?bid=177607&key=NwzhALqeO1kubFVD&uid=[uid]&msg
   
   });  
 
-const { hango } = require('../framework/hango');
-const traduire = require("../framework/traduction") ;
-const { default: axios } = require('axios');
 //const conf = require('../set');
 
 

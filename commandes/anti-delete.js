@@ -1,10 +1,11 @@
 const { hango } = require("../framework/hango");
+const hn = require("../lib/live");
 const fs = require('fs');
 
 
 let antiDeleteActive = false; // Variable pour stocker l'état de la commande anti-delete
 
-/ Map to store messages for anti-delete feature
+// Map to store messages for anti-delete feature
 const messageStore = new Map();
 let antiDeleteEnabled = new Map(); // Changed to Map to store per-chat settings
 

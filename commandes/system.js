@@ -64,7 +64,7 @@ hango({
     'https://files.catbox.moe/wx8q6h.mp3',
     'https://files.catbox.moe/uj8fps.m4a',
     'https://files.catbox.moe/dc88bx.m4a',
-    'https://files.catbox.moe/jy8ee7.mp3'
+    'https://files.catbox.moe/jy8ee7.mp3',
     'https://files.catbox.moe/9j7rh2.mp3'
   ];
 

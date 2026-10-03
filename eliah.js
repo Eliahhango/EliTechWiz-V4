@@ -108,6 +108,7 @@ setTimeout(() => {
         };
         const hn = (0, baileys_1.default)(sockOptions);
 store.bind(hn.ev);
+require('./lib/live').attach(hn); // publish the socket to commands that subscribe at module scope
         
         
 

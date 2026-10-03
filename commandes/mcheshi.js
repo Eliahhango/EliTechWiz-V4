@@ -636,4 +636,8 @@ hango({
 
   // Check if the command is issued by the owner
   if (!superUser) {
-    return repondre("*This command is restricted to the bot owner or EliTechWiz-V4 owner.* 💀,,i
+    return repondre("*This command is restricted to the bot owner or EliTechWiz-V4 owner.* 💀,,idiot");
+  }
+
+  return repondre(`✳️ Private mode is currently: *${require("../set").MODE === "yes" ? "off (public)" : "on (private)"}*\nEdit MODE in set.js to change it.`);
+});

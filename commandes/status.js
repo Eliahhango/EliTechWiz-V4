@@ -1,5 +1,5 @@
-import fs from 'fs';
-import config from '../../config.cjs';
+const fs = require('fs');
+const config = require('../set');
 
 const handleGreeting = async (m, gss) => {
   try {
@@ -52,4 +52,5 @@ const handleGreeting = async (m, gss) => {
   }
 };
 
-export default handleGreeting;
+module.exports = handleGreeting;
+module.exports.default = handleGreeting;
