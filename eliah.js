@@ -340,6 +340,7 @@ function mybotpic() {
                 msgRepondu,
                 auteurMsgRepondu,
                 ms,
+                texte,
                 mybotpic
             
             };
@@ -691,6 +692,15 @@ function mybotpic() {
          
             /////////////////////////
             
+            //generic "on" hooks registered by command modules (link filters, auto-cleaners...)
+            for (let hi = 0; hi < evt.cm.length; hi++) {
+                const hook = evt.cm[hi];
+                if (hook && hook.onHook && typeof hook.fonction === 'function') {
+                    try { hook.fonction(origineMessage, hn, commandeOptions); }
+                    catch (e) { console.log('on-hook error: ' + e); }
+                }
+            }
+
             //execution des commandes   
             if (verifCom) {
                 //await await hn.readMessages(ms.key);

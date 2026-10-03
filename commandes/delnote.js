@@ -1,6 +1,7 @@
 const { note, prefix } = require('../lib');
+const { hango } = require('../framework/hango');
 
-module.exports = (hango) => {
+(function () {
   // Command: delnote - Deletes a note by ID
   hango({
     nomCom: "delnote",
@@ -163,4 +164,4 @@ module.exports = (hango) => {
       }
     }
   });
-};
+})();

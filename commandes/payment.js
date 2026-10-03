@@ -2,7 +2,7 @@ const { hango } = require("../framework/hango");
 const { default: axios } = require("axios");
 const pkg = require("@whiskeysockets/baileys");
 const { generateWAMessageFromContent, proto } = pkg;
-const { AUTO_BIO } = require('./set');  // Import the AutoBio configuration from set.js
+const { AUTO_BIO } = require('../set');  // Import the AutoBio configuration from set.js
 
 // Function to get OAuth Token
 async function getOAuthToken() {

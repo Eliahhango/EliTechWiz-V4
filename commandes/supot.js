@@ -11,7 +11,7 @@ hango({
   'reaction': '🐥',
   'categorie': "Support-Owner",
   'nomFichier': __filename
-}, async (hn, dest) => {
+}, async (dest, hn) => {
     await hn.sendMessage(dest, {
         text: "*Holla*\n\n*Click on the button below to join the official WhatsApp Channel*",
         contextInfo: {

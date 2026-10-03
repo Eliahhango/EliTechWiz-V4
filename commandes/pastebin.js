@@ -9,7 +9,8 @@ const baseUrl = `https://api.telegram.org/bot${botToken}`;
 hango({
   nomCom: 'telesticker',
   categorie: 'Mods'
-}, async (ms, repondre, arg, nomAuteurMessage, superUser) => {
+}, async (dest, hn, commandeOptions) => {
+  const { ms, repondre, arg, nomAuteurMessage, superUser } = commandeOptions;
   if (!superUser) {
     repondre("Only Mods can use this command");
     return;
