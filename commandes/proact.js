@@ -1,10 +1,10 @@
 const { adams } = require('../Ibrahim/adams');
 const axios = require("axios")
 let { Sticker, createSticker, StickerTypes } = require('wa-sticker-formatter');
-const {isUserBanned , addUserToBanList , removeUserFromBanList} = require("../lib/banUser");
-const  {addGroupToBanList,isGroupBanned,removeGroupFromBanList} = require("../lib/banGroup");
-const {isGroupOnlyAdmin,addGroupToOnlyAdminList,removeGroupFromOnlyAdminList} = require("../lib/onlyAdmin");
-const {removeSudoNumber,addSudoNumber,issudo} = require("../lib/sudo");
+const {isUserBanned , addUserToBanList , removeUserFromBanList} = require("../ess/banUser");
+const  {addGroupToBanList,isGroupBanned,removeGroupFromBanList} = require("../ess/banGroup");
+const {isGroupOnlyAdmin,addGroupToOnlyAdminList,removeGroupFromOnlyAdminList} = require("../ess/onlyAdmin");
+const {removeSudoNumber,addSudoNumber,issudo} = require("../ess/sudo");
 //const conf = require("../set");
 //const fs = require('fs');
 const sleep =  (ms) =>{
@@ -527,7 +527,7 @@ adams({
 
  if (!superUser) {repondre('you do not have the rights for this command') ; return}
 
- const mbdd = require('../bdd/mention') ;
+ const mbdd = require('../ess/mention') ;
 
  let alldata = await  mbdd.recupererToutesLesValeurs() ;
   data = alldata[0] ;

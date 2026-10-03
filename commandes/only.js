@@ -1,9 +1,9 @@
 
 const { hango } = require("../framework/hango")
-//const { getGroupe } = require("../bdd/groupe")
+//const { getGroupe } = require("../ess/groupe")
 const { Sticker, StickerTypes } = require('wa-sticker-formatter');
-const {ajouterOuMettreAJourJid,mettreAJourAction,verifierEtatJid} = require("../bdd/antilien")
-const {atbajouterOuMettreAJourJid,atbverifierEtatJid} = require("../bdd/antibot")
+const {ajouterOuMettreAJourJid,mettreAJourAction,verifierEtatJid} = require("../ess/antilien")
+const {atbajouterOuMettreAJourJid,atbverifierEtatJid} = require("../ess/antibot")
 const { search, download } = require("aptoide-scraper");
 const fs = require("fs-extra");
 const conf = require("../set");
@@ -757,7 +757,7 @@ hango({ nomCom: "apk", reaction: "✨", categorie: "Recherche" }, async (dest, h
 
 /*******************************  automute && autoummute ***************************/
 
-const cron = require(`../bdd/cron`) ;
+const cron = require(`../ess/cron`) ;
 
 
 hango({
@@ -951,7 +951,7 @@ hango({
 
   if(!verifAdmin) { repondre('Sorry, you cannot enable NSFW content without being an administrator of the group') ; return}
 
-      let hbd = require('../bdd/hentai') ;
+      let hbd = require('../ess/hentai') ;
 
     let isHentaiGroupe = await hbd.checkFromHentaiList(dest) ;
 

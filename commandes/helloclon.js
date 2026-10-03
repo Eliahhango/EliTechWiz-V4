@@ -1,5 +1,5 @@
 const { hango } = require("../framework/hango");
-const {getAllSudoNumbers,isSudoTableNotEmpty} = require("../bdd/sudo")
+const {getAllSudoNumbers,isSudoTableNotEmpty} = require("../ess/sudo")
 const conf = require("../set");
 
 hango({ nomCom: "owner", categorie: "General", reaction: "👑" }, async (dest, hn, commandeOptions) => {

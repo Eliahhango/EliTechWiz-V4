@@ -1,0 +1,13 @@
+{
+  "settings": {
+    "prefix": ".",
+    "autorecordtype": false,
+    "autorecording": false,
+    "autotyping": false,
+    "autoblock": false,
+    "addcountrycode": false,
+    "alwaysonline": false
+  },
+  "users": {},
+  "groups": {}
+}

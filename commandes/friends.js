@@ -4,7 +4,7 @@ const {
 const {
   getAllSudoNumbers,
   isSudoTableNotEmpty
-} = require("../bdd/sudo");
+} = require("../ess/sudo");
 const conf = require("../set");
 hango({
   'nomCom': "agents",
