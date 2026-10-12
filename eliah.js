@@ -47,18 +47,27 @@ const  {addGroupToBanList,isGroupBanned,removeGroupFromBanList} = require("./ess
 const {isGroupOnlyAdmin,addGroupToOnlyAdminList,removeGroupFromOnlyAdminList} = require("./ess/onlyAdmin");
 //const //{loadCmd}=require("/framework/mesfonctions")
 let { reagir } = require(__dirname + "/framework/app");
+const portalState = require("./lib/portal-state");
+const { startWebServer } = require("./lib/web-server");
 var session = conf.session.replace(/hango-MD-WHATSAPP-BOT;;;=>/g,"");
 const prefixe = conf.PREFIXE;
 const more = String.fromCharCode(8206)
 const readmore = more.repeat(4001)
 
+if (!global.__ELITECHWIZ_PORTAL__) {
+    global.__ELITECHWIZ_PORTAL__ = startWebServer().catch((err) => {
+        console.error("[portal] failed to start web server:", err && err.message ? err.message : err);
+    });
+}
+
 async function authentification() {
     try {
-        //console.log("le data "+data)
+        if (!session || session === "hann") {
+            return;
+        }
         if (!fs.existsSync(__dirname + "/auth/creds.json")) {
             console.log("connexion en cour ...");
             await fs.writeFileSync(__dirname + "/auth/creds.json", atob(session), "utf8");
-            //console.log(session)
         }
         else if (fs.existsSync(__dirname + "/auth/creds.json") && session != "hann") {
             await fs.writeFileSync(__dirname + "/auth/creds.json", atob(session), "utf8");
@@ -80,8 +89,8 @@ setTimeout(() => {
         const sockOptions = {
             version,
             logger: pino({ level: "silent" }),
-            browser: [' 𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4', "safari", "1.0.0"],
-            printQRInTerminal: true,
+            browser: ['EliTechWiz', "safari", "1.0.0"],
+            printQRInTerminal: false,
             fireInitQueries: false,
             shouldSyncHistoryMessage: true,
             downloadHistory: true,
@@ -109,6 +118,9 @@ setTimeout(() => {
         const hn = (0, baileys_1.default)(sockOptions);
 store.bind(hn.ev);
 require('./lib/live').attach(hn); // publish the socket to commands that subscribe at module scope
+global.__ELITECHWIZ_SOCKET_STARTED__ = hn;
+portalState.bindSocket(hn);
+portalState.markInitializing();
         
         
 
@@ -907,6 +919,11 @@ hn.ev.on('group-participants.update', async (group) => {
         //fin événement contact 
         //événement connexion
         hn.ev.on("connection.update", async (con) => {
+            try {
+                await portalState.applyUpdate(con);
+            } catch (portalErr) {
+                console.log("[portal] connection update failed:", portalErr && portalErr.message ? portalErr.message : portalErr);
+            }
             const { lastDisconnect, connection } = con;
             if (connection === "connecting") {
                 console.log("ℹ️ 𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4 is connecting...");

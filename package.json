@@ -1,10 +1,11 @@
 {
   "name": " 𝓔𝓵𝓲𝓣𝓮𝓬𝓱𝓦𝓲𝔃-𝓥4",
   "version": "2.0.0",
-  "description": "",
+  "description": "EliTechWiz WhatsApp bot with pairing-code and QR web portal",
   "main": "eliah.js",
   "scripts": {
-    "test": "node eliah.js",
+    "start": "NODE_PATH=/usr/local/lib/node_modules node server.js",
+    "test": "NODE_PATH=/usr/local/lib/node_modules node --test test/*.test.js",
     "s": "node eliah.js",
     "pm2": "pm2 start eliah.js --attach",
     "c": "tsc"
@@ -61,6 +62,7 @@
     "discord-mongoose-economy": "^1.2.0",
     "dotenv": "^16.3.1",
     "express": "^4.19.2",
+    "qrcode": "^1.5.3",
     "ffmpeg": "^0.0.4",
     "fg-ig": "^0.0.2",
     "figlet": "^1.7.0",

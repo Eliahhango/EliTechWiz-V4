@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EliTechWiz | Connect WhatsApp</title>
+  <meta name="description" content="Link your WhatsApp account to EliTechWiz using a pairing code or QR code." />
+  <link rel="stylesheet" href="/styles.css?v=2" />
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo-mark">EW</span>
+      <div>
+        <strong id="botName">EliTechWiz</strong>
+        <p>WhatsApp multi-device portal</p>
+      </div>
+    </div>
+    <div class="status-chip" id="statusChip" data-state="disconnected">
+      <span class="dot"></span>
+      <span id="statusLabel">Disconnected</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Secure account linking</p>
+      <h1>Connect WhatsApp to your bot</h1>
+      <p class="lede">
+        Pair with an 8-digit code or scan a live QR code. EliTechWiz then restores your existing commands, plugins, and group tools.
+      </p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#connect">Connect WhatsApp</a>
+        <a class="btn ghost" href="#how">How it works</a>
+      </div>
+    </section>
+
+    <section id="connect" class="panel">
+      <div class="panel-head">
+        <h2>Connection dashboard</h2>
+        <p id="statusMessage">WhatsApp is not connected.</p>
+      </div>
+
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="pair" type="button">Pairing code</button>
+        <button class="tab" data-tab="qr" type="button">QR code</button>
+      </div>
+
+      <div class="tab-panels">
+        <section class="tab-panel active" id="panel-pair">
+          <form id="pairForm">
+            <div class="field-row">
+              <label>
+                Country
+                <select id="dialCode" name="dialCode" required></select>
+              </label>
+              <label class="grow">
+                WhatsApp number
+                <input id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="712345678" required />
+              </label>
+            </div>
+            <p class="hint">Use the number already registered on WhatsApp, without spaces or plus signs.</p>
+            <button class="btn primary wide" type="submit" id="pairBtn">Request pairing code</button>
+          </form>
+          <div class="code-card" id="codeCard" hidden>
+            <p>Enter this code in WhatsApp</p>
+            <div class="code" id="pairingCode"></div>
+            <ol>
+              <li>Keep this page open. Do not refresh until WhatsApp shows Connected.</li>
+              <li>On your phone, open WhatsApp &gt; Settings &gt; Linked devices.</li>
+              <li>Tap Link a device, then Link with phone number instead.</li>
+              <li>Enter the 8-digit code. WhatsApp should then show a confirmation to link this device. Approve it.</li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="tab-panel" id="panel-qr">
+          <div class="qr-wrap">
+            <div class="qr-frame" id="qrFrame">
+              <img id="qrImage" alt="WhatsApp QR code" hidden />
+              <p id="qrPlaceholder">The live QR code will appear here.</p>
+            </div>
+            <div>
+              <ol>
+                <li>Open WhatsApp on your phone.</li>
+                <li>Go to Settings &gt; Linked devices &gt; Link a device.</li>
+                <li>Scan this QR code. It refreshes automatically when WhatsApp issues a new one.</li>
+              </ol>
+              <button class="btn primary" type="button" id="qrBtn">Start QR login</button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="footer-row">
+        <p class="muted" id="connectedUser"></p>
+        <button class="btn danger" type="button" id="disconnectBtn" hidden>Disconnect</button>
+      </div>
+      <p class="error" id="errorBox" hidden></p>
+    </section>
+
+    <section id="how" class="info-grid">
+      <article>
+        <h3>Pairing code</h3>
+        <p>Best on the same phone. Request a genuine WhatsApp pairing code and type it into Linked devices.</p>
+      </article>
+      <article>
+        <h3>QR code</h3>
+        <p>Best from a computer. Scan the live code from WhatsApp. Expired codes are replaced automatically.</p>
+      </article>
+      <article>
+        <h3>Existing bot</h3>
+        <p>After linking, the current EliTechWiz command set, plugins, and group handlers keep running.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>Single-session bot. One WhatsApp account can be linked at a time. Session files stay on the server.</p>
+  </footer>
+  <script src="/app.js?v=2"></script>
+</body>
+</html>

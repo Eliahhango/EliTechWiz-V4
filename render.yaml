@@ -10,4 +10,4 @@ services:
         value: 20.x
       - key: NODE_ENV
         value: production
-    healthCheckPath: / 
+    healthCheckPath: /health 

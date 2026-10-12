@@ -1,6 +1,8 @@
 # Authentication and session files
 /auth
 /auth/**
+/session
+/session/**
 /set.env
 *.env
 !exemple_de_set.env
